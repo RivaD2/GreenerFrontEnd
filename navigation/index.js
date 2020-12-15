@@ -27,7 +27,7 @@ const screens = createStackNavigator({
 }, {
   defaultNavigationOptions: {
     headerStyle: {},
-    headerBackImage: <Image/>,
+    headerBackImage: <Image source={require('../assets/icons/back.png')} />,
     headerBackTitle: null,
     headerLeftContainerStyle: {},
     headerRightContainerStyle: {},
