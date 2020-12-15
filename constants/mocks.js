@@ -1,6 +1,27 @@
-const categories = [
+const my_plants = [
     {
-      id: 'plants',
+      id: 'plant 1',
+      name: 'Plants',
+      tags: ['products', 'inspirations'],
+      count: 147,
+      image: require('../assets/icons/plants.png')
+    },
+    {
+      id: 'plants 2',
+      name: 'Plants',
+      tags: ['products', 'inspirations'],
+      count: 147,
+      image: require('../assets/icons/plants.png')
+    },
+    {
+      id: 'plants 3',
+      name: 'Plants',
+      tags: ['products', 'inspirations'],
+      count: 147,
+      image: require('../assets/icons/plants.png')
+    },
+    {
+      id: 'plants 4',
       name: 'Plants',
       tags: ['products', 'inspirations'],
       count: 147,
@@ -41,6 +62,37 @@ const categories = [
       count: 47,
       image: require('../assets/icons/fertilizers.png')
     },
+  ];
+
+  const categories = [
+    {
+      id: 'plant2 1',
+      name: 'Plant 1',
+      tags: ['products', 'inspirations'],
+      count: 147,
+      image: require('../assets/icons/plants.png')
+    },
+    {
+      id: 'plants 2',
+      name: 'Plant 2',
+      tags: ['products', 'inspirations', 'plant'],
+      count: 147,
+      image: require('../assets/icons/plants.png')
+    },
+    {
+      id: 'plants 3',
+      name: 'Plant 3',
+      tags: ['products', 'inspirations', 'plant'],
+      count: 147,
+      image: require('../assets/icons/plants.png')
+    },
+    {
+      id: 'plants 4',
+      name: 'Plant 4',
+      tags: ['products', 'inspirations', 'plant'],
+      count: 147,
+      image: require('../assets/icons/plants.png')
+    }
   ];
   
   const products = [
@@ -90,4 +142,5 @@ const categories = [
     explore,
     products,
     profile,
+    my_plants
   }
