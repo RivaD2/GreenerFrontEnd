@@ -6,15 +6,14 @@ import { Button, Block, Text } from '../components';
 
 export default class Welcome extends React.Component {
 
- static navigationOptions = {
-   header : null
- }
+  static navigationOptions = {
+  }
 
 
  render(){
    return (
      <Block middle>
-       <Text>Login</Text>
+       <Text>Login, I dont know if we need this screen, but just in case</Text>
      </Block>
     
    );
