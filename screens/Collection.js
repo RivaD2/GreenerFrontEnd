@@ -51,7 +51,7 @@ class Browse extends Component {
   render() {
     const { profile, navigation } = this.props;
     const { categories } = this.state;
-    const tabs = ['Everything', 'Plants', 'Minigames', 'Shop'];
+    const tabs = ['Everything', 'Terrarium', 'Minigames', 'Shop'];
 
 
     return (
@@ -91,7 +91,7 @@ class Browse extends Component {
                     {category.name}
                   </Text>
                   <Text gray caption>
-                    {category.count} products
+                    {category.description} 
                   </Text>
                 </Card>
               </TouchableOpacity>
