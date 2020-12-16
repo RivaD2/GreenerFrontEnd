@@ -70,6 +70,7 @@ const my_plants = [
       name: 'Plant 1',
       tags: ['products', 'inspirations'],
       count: 147,
+      status: 'happy',
       image: require('../assets/icons/plants.png')
     },
     {
@@ -77,6 +78,7 @@ const my_plants = [
       name: 'Plant 2',
       tags: ['products', 'inspirations', 'plant'],
       count: 147,
+      status: 'happy',
       image: require('../assets/icons/plants.png')
     },
     {
@@ -84,13 +86,34 @@ const my_plants = [
       name: 'Plant 3',
       tags: ['products', 'inspirations', 'plant'],
       count: 147,
+      status: 'happy',
+      image: require('../assets/icons/plants.png')
+    }
+  ];
+
+  const categories2 = [
+    {
+      id: 'plant2 1',
+      name: 'Plant 1',
+      tags: ['products', 'inspirations'],
+      count: 147,
+      status: 'happy',
       image: require('../assets/icons/plants.png')
     },
     {
-      id: 'plants 4',
-      name: 'Plant 4',
+      id: 'plants 2',
+      name: 'Plant 2',
       tags: ['products', 'inspirations', 'plant'],
       count: 147,
+      status: 'happy',
+      image: require('../assets/icons/plants.png')
+    },
+    {
+      id: 'plants 3',
+      name: 'Plant 3',
+      tags: ['products', 'inspirations', 'plant'],
+      count: 147,
+      status: 'happy',
       image: require('../assets/icons/plants.png')
     }
   ];
@@ -127,11 +150,13 @@ const my_plants = [
   ];
   
   const profile = {
-    username: 'Kriss',
-    location: 'Asia',
-    email: 'kriss@kriss.com',
+    username: 'Gen',
+    location: 'Seattle',
+    email: 'test@test.com',
     avatar: require('../assets/images/avatar.png'),
     budget: 5000,
+    funds: 5000,
+    plants: 6,
     monthly_cap: 7000,
     notifications: true,
     newsletter: false,
@@ -142,5 +167,6 @@ const my_plants = [
     explore,
     products,
     profile,
-    my_plants
+    my_plants,
+    categories2
   }

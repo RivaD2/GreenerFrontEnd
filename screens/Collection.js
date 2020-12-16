@@ -1,7 +1,8 @@
+import { auto, reduce } from 'async';
 import React from 'react';
 import { StyleSheet, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 
-import { Button, Block, Text, Card, Badge } from '../components';
+import { Button, Block, Text, Card, Badge, Divider } from '../components';
 import { theme, mocks } from '../constants';
 
 // Thees Tabs are like Navs to: 
@@ -43,20 +44,25 @@ export default class Browse extends React.Component {
         return (
             <Block>
                 <Block flex={false} row center space="between" style={styles.header}>
-                    <Text h1 bold>Browse </Text>
-                    <Button>
+                    <Text h1 bold>My Plants</Text>
+                    <Button onPress={() => navigation.navigate('Settings')}>
                         <Image source={profile.avatar} style={styles.avatar} />
                     </Button>
                 </Block>
                 <Block flex={false} row style={styles.tabs}>
                     {tabs.map(tab => this.renderTab(tab))}
                 </Block>
+                <Block flex={false} row center space="between" style={styles.header}>
+                    <Text h1 bold>Happy Terrarium</Text>
+                </Block>
 
+                {/* blocks on oppacyty  */}
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     style={{ paddingVertial: theme.sizes.base * 2 }}
                 >
-                    <Block flex={false} row space="between" style={styles.categories}>
+                    <Block flex={false} row  space="between" style={styles.categories}>
+                    
                         {categories.map(category => (
                             <TouchableOpacity
                                 key={category.name}
@@ -67,14 +73,44 @@ export default class Browse extends React.Component {
                                         <Image source={category.image} />
                                     </Badge>
                                     <Text medium height={20}>{category.name}</Text>
-                                    <Text gray caption>{category.count} products</Text>
+                                    <Text gray caption>Feeling {category.status}!</Text>
                                 </Card>
                             </TouchableOpacity>
                         ))}
                     </Block>
+                    <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
+
+                    <Block flex={false} row center space="between" style={styles.header}>
+                    
+                    <Text h1 bold>Lucky Terrarium</Text>
+                </Block>
+            
+                 
+                    <Block flex={false} row space="between" style={styles.categories}>
+                    
+                        {categories.map(category => (
+                            <TouchableOpacity
+                                key={category.name}
+                                onPress={() => navigation.navigate('Explore', { category })}
+                            >
+                                <Card center middle shadow style={styles.category}>
+                                    <Badge margin={[0, 0, 15]} size={50} color="rgba(41,216,143,0.20)">
+                                        <Image source={category.image} />
+                                    </Badge>
+                                    <Text medium height={20}>{category.name}</Text>
+                                    <Text gray caption>Feeling {category.status}!</Text>
+                                </Card>
+                            </TouchableOpacity>
+                        ))}
+
+                        </Block>
 
                 </ScrollView>
+
+                
+                
             </Block>
+            
 
         );
     }
@@ -121,9 +157,17 @@ const styles = StyleSheet.create({
         maxWidth: (width - (theme.sizes.padding * 2.4) - theme.sizes.base) / 2,
         maxHeight: (width - (theme.sizes.padding * 2.4) - theme.sizes.base) / 2,
     },
+   
     categories: {
         flexWrap: 'wrap',
         paddingHorizontal: theme.sizes.base * 2,
         marginBottom: theme.sizes.base * 3.5,
+        backgroundColor: "#e6e6ff",
+        borderRadius: 20,
+        paddingTop: 12,
     },
+    sliders: {
+        marginTop: theme.sizes.base * 0.7,
+        paddingHorizontal: theme.sizes.base * 2,
+      },
 });
