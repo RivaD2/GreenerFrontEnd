@@ -66,9 +66,9 @@ const my_plants = [
 
   const categories = [
     {
-      id: 'plant2 1',
+      id: 'plant 1',
       name: 'Plant 1',
-      tags: ['products', 'inspirations'],
+      tags: ['plants', 'everything'],
       count: 147,
       status: 'happy',
       image: require('../assets/icons/plants.png')
@@ -76,7 +76,7 @@ const my_plants = [
     {
       id: 'plants 2',
       name: 'Plant 2',
-      tags: ['products', 'inspirations', 'plant'],
+      tags: ['plants' , 'everything'],
       count: 147,
       status: 'happy',
       image: require('../assets/icons/plants.png')
@@ -84,38 +84,57 @@ const my_plants = [
     {
       id: 'plants 3',
       name: 'Plant 3',
-      tags: ['products', 'inspirations', 'plant'],
+      tags: ['plants' , 'everything'],
       count: 147,
       status: 'happy',
       image: require('../assets/icons/plants.png')
+    } ,
+    {
+      id: 'seeds',
+      name: 'Seeds type 1',
+      tags: ['shop' , 'everything'],
+      count: 16,
+      image: require('../assets/icons/seeds.png')
+    } ,
+    {
+      id: 'seeds',
+      name: 'Seeds type 2',
+      tags: ['shop' , 'everything'],
+      count: 16,
+      image: require('../assets/icons/seeds.png')
+    } ,
+    {
+      id: 'seeds',
+      name: 'Seeds type 3',
+      tags: ['shop', 'everything'],
+      count: 16,
+      image: require('../assets/icons/seeds.png')
+    } ,
+    {
+      id: 'seeds',
+      name: 'Seeds type 4',
+      tags: ['shop' , 'everything'],
+      count: 16,
+      image: require('../assets/icons/seeds.png')
+    } ,
+    {
+      id: 'seeds',
+      name: 'Seeds type 5',
+      tags: ['shop' , 'everything'],
+      count: 16,
+      image: require('../assets/icons/seeds.png')
+    } ,
+    {
+      id: 'bumpers',
+      name: 'Bumpers',
+      tags: ['minigames', 'everything' ],
+      count: 16,
+      image: require('../assets/icons/seeds.png')
     }
   ];
 
   const categories2 = [
-    {
-      id: 'plant2 1',
-      name: 'Plant 1',
-      tags: ['products', 'inspirations'],
-      count: 147,
-      status: 'happy',
-      image: require('../assets/icons/plants.png')
-    },
-    {
-      id: 'plants 2',
-      name: 'Plant 2',
-      tags: ['products', 'inspirations', 'plant'],
-      count: 147,
-      status: 'happy',
-      image: require('../assets/icons/plants.png')
-    },
-    {
-      id: 'plants 3',
-      name: 'Plant 3',
-      tags: ['products', 'inspirations', 'plant'],
-      count: 147,
-      status: 'happy',
-      image: require('../assets/icons/plants.png')
-    }
+   
   ];
   
   const products = [
