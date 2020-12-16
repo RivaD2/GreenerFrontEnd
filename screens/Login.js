@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import React, { useEffect, useState } from 'react';
+//expo code 3-6
+import { AsyncStorage, Button, StyleSheet, Text, View } from 'react-native';
+import * as AppAuth from 'expo-app-auth';
+import Linking from 'expo';
+const prefix = Linking.makeUrl('/');
 import {
   ActivityIndicator,
   Keyboard,

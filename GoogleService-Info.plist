@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1085864325700-fajq3c326nndvc4vjcfprhlelfmpb24c.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1085864325700-fajq3c326nndvc4vjcfprhlelfmpb24c</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAV9kmquBOsfQdGwh8Nb2-QgltGOgLG1lg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1085864325700</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cffinal.greener</string>
+	<key>PROJECT_ID</key>
+	<string>greener-6b598</string>
+	<key>STORAGE_BUCKET</key>
+	<string>greener-6b598.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1085864325700:ios:58bb144e284c9cc2ea8211</string>
+</dict>
+</plist>
