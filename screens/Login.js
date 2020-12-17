@@ -46,13 +46,81 @@ export default function Login(){
     </View>
   )
 }
-//need client id possibly here
 
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+    backgroundColor:'#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
+let config = {
+  issuer: 'https://accounts.google.com',
+  scopes: ['openid', 'profile'],
+  clientId: '872509857984-6vtqndded3e1dot20un6otbo7gfppi6g.apps.googleusercontent.com'
+}
+//assuming this is IOS key
+let storageKey = '@greener:AIzaSyAV9kmquBOsfQdGwh8Nb2-QgltGOgLG1lg';
 
+const signInAsync = async() => {
+  let authState = await AppAuth.authAsync(config);
+  // Caching the token
+  await cacheAuthAsync(authState);
+  console.log('signInAsync', authState);
+  return authState;
+}
 
+const cacheAuthAsync = async authState => {
+  // Writing the token to local storage so when app loads, it tries to read token out of storage
+  return await AsyncStorage.setItem(StorageKey, JSON.stringify(authState));
+}
 
+const getCachedAuthAsync = async() => {
+  // Getting token from storage, parsing it, and checking if it's valid/expired
+  let value = await AsyncStorage.getItem(StorageKey);
+  let authState = JSON.parse(value);
+  console.log('getCacheAuthAsync', authState);
+  if(authState) {
+    if(checkIfTokenExpired(authState)) {
+      return refreshAuthAsync(authState);
+    } else {
+      return authState;
+    }
+  }
+  return null;
+}
+// Function to check if token is expired
+const checkIfTokenExpiredAsync = ({accessTokenExpirationDate}) => {
+  return new Date(accessTokenExpirationDate) < new Date();
+} 
+// If token is expired, check with server to see if user can stay signed in
+const refreshAuthAsync = async({ refreshToken })=> {
+  let authState = await AppAuth.refreshAsync(config, refreshToken);
+  console.log('refreshAuth', authState);
+  await cacheAuthAsync(authState);
+  return authState;
+}
 
+const signOutAsync = async({ accessToken }) => {
+  try {
+    await AppAuth.revokeAsync(config, {
+      token: accessToken,
+      isClientIdProvided: true,
+    });
+    await AsyncStorage.removeItem(StorageKey);
+    return null;
+  } catch (e) {
+    alert(`Failed to revoke token: ${e.message}`);
+  }
+}
+
+export {
+  signInAsync,
+  getCachedAuthAsync,
+  signOutAsync
+}
 
 
 
