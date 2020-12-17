@@ -58,7 +58,7 @@ class Browse extends Component {
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
           <Text h1 bold>
-            Browse
+            My Garden
           </Text>
           <Button onPress={() => navigation.navigate("Settings")}>
             <Image source={profile.avatar} style={styles.avatar} />
@@ -115,8 +115,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.sizes.base * 2
   },
   avatar: {
-    height: theme.sizes.base * 2.2,
-    width: theme.sizes.base * 2.2
+    height: theme.sizes.base * 3.2,
+    width: theme.sizes.base * 3.2,
+    backgroundColor: 'transparent',
   },
   tabs: {
     borderBottomColor: theme.colors.gray2,

@@ -28,4 +28,19 @@ Robert Rizo: A front End Dev that loves the presentation layer of apps. Check ou
 
 #### Credits to:
 
-- Free vector images from [IStockPhoto](https://www.istockphoto.com)
+###### Plant Vectors from Vecteezy free with atribution from Authors: 
+
+  - watchtaxinyc, 
+
+  - Mini Stock,
+  
+  - Diana,
+
+  - MoonStarer,
+
+###### Tick Tac Toe Minigame tutorial from:
+
+  - Jeff Terrell at: [tutorial](https://gitlab.com/unc-app-lab/react-native-tutorial-tic-tac-toe/-/blob/master/App.js)
+
+  
+ 
