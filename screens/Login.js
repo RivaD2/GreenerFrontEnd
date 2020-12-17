@@ -16,7 +16,7 @@ export default class LoginScreen extends Component {
             })
             if(result.type === 'success') {
                 console.log('LoginScreen.js', result.user.givenName);
-                this.props.navigation.navigate('Profile', {
+                this.props.navigation.navigate('Collection', {
                     username: result.user.givenName
                 })
                 return result.accessToken;
@@ -28,6 +28,7 @@ export default class LoginScreen extends Component {
             return {error: true}
         }
     } 
+
     render() {
         return(
             <View style={styles.container}>
