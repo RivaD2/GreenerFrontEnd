@@ -1,17 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import React, { useEffect, useState } from 'react';
-//expo code 3-6
 import * as GoogleSignin from 'expo-google-sign-in';
 import { AsyncStorage, Button, StyleSheet, Text, View } from 'react-native';
 import * as AppAuth from 'expo-app-auth';
 // import Linking from 'expo';
 // const prefix = Linking.makeUrl('/');
 // import { View, Text, Image, StyleSheet, Button, Alert} from 'react-native';
-import {
-  GoogleSigninButton,
-  GoogleSignin,
-  statusCodes
-} from '@react-native-community/google-signin';
 
 export default function Login(){
   let [authState, setAuthState] = useState(null);
