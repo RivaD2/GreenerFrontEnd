@@ -18,7 +18,7 @@ import  {createSwitchNavigator} from 'react-navigation';
 
 const mainNavigator  = createSwitchNavigator ({
   Login: { screen : Login },
-  Profile: { screen : Profile }
+  Collection: { screen : Collection }
 })
 
 const screens = createStackNavigator({
