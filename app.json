@@ -19,11 +19,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.cffinal.greener",
+      "bundleIdentifier": "host.exp.exponent",
       "buildNumber": "1.0.0",
       "config": {
         "googleSignIn": {
-          "reservedClientId": "com.googleusercontent.apps.1085864325700-fajq3c326nndvc4vjcfprhlelfmpb24c"
+          "reservedClientId": "com.googleusercontent.apps.872509857984-nv75qdpnj41i8qjfeb5pplnncmnd6stv"
         }
       }
     },

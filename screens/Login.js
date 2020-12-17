@@ -1,135 +1,50 @@
-import React from "react";
-import React, { useEffect, useState } from 'react';
+import React, {Component} from "react";
+//import React, { useEffect, useState } from 'react';
 import * as GoogleSignin from 'expo-google-sign-in';
-import { AsyncStorage, Button, StyleSheet, Text, View } from 'react-native';
 import * as AppAuth from 'expo-app-auth';
-// import Linking from 'expo';
-// const prefix = Linking.makeUrl('/');
-// import { View, Text, Image, StyleSheet, Button, Alert} from 'react-native';
+import * as Google from 'expo-google-app-auth';
+import {Text, View, StyleSheet, Button } from 'react-native';
 
-export default function Login(){
-  let [authState, setAuthState] = useState(null);
+const IOS_CLIENT_ID = '872509857984-nv75qdpnj41i8qjfeb5pplnncmnd6stv.apps.googleusercontent.com';
 
-  useEffect(() => {
-    (async () => {
-      let cachedAuth = await getCachedAuthAsync();
-      if(cachedAuth && !authState) {
-        setAuthState(cachedAuth);
-      }
-    })();
-  }, []);
-
-  return(
-    <View style={StyleSheet.container}>
-      <Text>Greener</Text>
-      <Button
-        title="Sign in with Google"
-        onPress={async () => {
-          const _authState = await GoogleSignin.signInAsync();
-          setAuthState(_authState);
-        }}
-      />
-      <Button
-        title="Sign Out"
-        onPress={async () => {
-          await signOutAsync(authState);
-          setAuthState(null);
-        }}
-      />
-      <Text>{JSON.stringify(authState, null, 2)}</Text>
-    </View>
-  )
+export default class LoginScreen extends Component {
+    signInWithGoogle = async () => {
+        try {
+            const result = await Google.logInAsync ({
+                iosClientId: IOS_CLIENT_ID,
+                success: ['profile', 'email']
+            })
+            if(result.type === 'success') {
+                console.log('LoginScreen.js', result.user.givenName);
+                this.props.navigation.navigate('Profile', {
+                    username: result.user.givenName
+                })
+                return result.accessToken;
+            } else {
+                return {cancelled: true};
+            }
+        } catch (err){
+            console.log('LoginScreen', err);
+            return {error: true}
+        }
+    } 
+    render() {
+        return(
+            <View style={styles.container}>
+                <Button title="Login with Google" onPress={this.signInWithGoogle}/>
+            </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    backgroundColor:'#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-let config = {
-  issuer: 'https://accounts.google.com',
-  scopes: ['openid', 'profile'],
-  clientId: '872509857984-6vtqndded3e1dot20un6otbo7gfppi6g.apps.googleusercontent.com'
-}
-//assuming this is IOS key
-let storageKey = '@greener:AIzaSyAV9kmquBOsfQdGwh8Nb2-QgltGOgLG1lg';
-
-const signInAsync = async() => {
-  let authState = await AppAuth.authAsync(config);
-  // Caching the token
-  await cacheAuthAsync(authState);
-  console.log('signInAsync', authState);
-  return authState;
-}
-
-const cacheAuthAsync = async authState => {
-  // Writing the token to local storage so when app loads, it tries to read token out of storage
-  return await AsyncStorage.setItem(StorageKey, JSON.stringify(authState));
-}
-
-const getCachedAuthAsync = async() => {
-  // Getting token from storage, parsing it, and checking if it's valid/expired
-  let value = await AsyncStorage.getItem(StorageKey);
-  let authState = JSON.parse(value);
-  console.log('getCacheAuthAsync', authState);
-  if(authState) {
-    if(checkIfTokenExpired(authState)) {
-      return refreshAuthAsync(authState);
-    } else {
-      return authState;
-    }
-  }
-  return null;
-}
-// Function to check if token is expired
-const checkIfTokenExpiredAsync = ({accessTokenExpirationDate}) => {
-  return new Date(accessTokenExpirationDate) < new Date();
-} 
-// If token is expired, check with server to see if user can stay signed in
-const refreshAuthAsync = async({ refreshToken })=> {
-  let authState = await AppAuth.refreshAsync(config, refreshToken);
-  console.log('refreshAuth', authState);
-  await cacheAuthAsync(authState);
-  return authState;
-}
-
-const signOutAsync = async({ accessToken }) => {
-  try {
-    await AppAuth.revokeAsync(config, {
-      token: accessToken,
-      isClientIdProvided: true,
-    });
-    await AsyncStorage.removeItem(StorageKey);
-    return null;
-  } catch (e) {
-    alert(`Failed to revoke token: ${e.message}`);
-  }
-}
-
-export {
-  signInAsync,
-  getCachedAuthAsync,
-  signOutAsync
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    container: {
+        flex:1,
+        backgroundColor:'#fff',
+        alignItems: 'center',
+        justifyContent: 'center', 
+   }
+})
 
 
 // ==============Rob's Code

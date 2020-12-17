@@ -6,13 +6,7 @@ import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import Navigation from './navigation/index';
 
-
-
 // context api: wrap everything in a provider
-
-
-
-
 // import all used images
 const images = [
   require('./assets/icons/back.png'),
