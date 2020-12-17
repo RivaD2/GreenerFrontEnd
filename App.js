@@ -4,8 +4,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Block } from './components';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
-
 import Navigation from './navigation/index';
+
+
+
+// context api: wrap everything in a provider
+
+
+
 
 // import all used images
 const images = [
@@ -78,4 +84,5 @@ export default class App extends React.Component {
 }
 
 const styles = StyleSheet.create({
+
 });
