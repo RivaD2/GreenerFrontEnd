@@ -1,7 +1,6 @@
 {
   "expo": {
     "name": "anonymousplantgame",
-    "scheme": "greener",
     "slug": "anonymousplantgame",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,14 +17,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.cffinal.greener",
-      "buildNumber": "1.0.0",
-      "config": {
-        "googleSignIn": {
-          "reservedClientId": "com.googleusercontent.apps.1085864325700-fajq3c326nndvc4vjcfprhlelfmpb24c"
-        }
-      }
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
