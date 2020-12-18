@@ -1,4 +1,6 @@
-const my_plants = [
+// Array for the plants that fit in to terrarium 1
+
+const plants1 = [
   {
     id: 'plant 1',
     name: 'Plant 1',
@@ -7,7 +9,7 @@ const my_plants = [
     stage: 1,
     type: 1,
     status: 'happy',
-    image: require('../assets/icons/plants.png')
+    image: require('../assets/images/plant_type_one_happy.png')
   },
   {
     id: 'plants 2',
@@ -17,7 +19,7 @@ const my_plants = [
     stage: 2,
     type: 1,
     status: 'happy',
-    image: require('../assets/icons/plants.png')
+    image: require('../assets/images/plant_one_happy_med.png')
   },
   {
     id: 'plants 3',
@@ -27,59 +29,139 @@ const my_plants = [
     stage: 3,
     type: 1,
     status: 'happy',
-    image: require('../assets/icons/plants.png')
-  } ,
-  {
-    id: 'plants 4',
-    name: 'Plant 4',
-    tags: ['plants' , 'everything'],
-    count: 147,
-    stage: 1,
-    type: 1,
-    status: 'sad',
-    image: require('../assets/icons/plants.png')
-  },
-  {
-    id: 'plants 5',
-    name: 'Plant 5',
-    tags: ['plants' , 'everything'],
-    count: 147,
-    stage: 2,
-    type: 1,
-    status: 'sad',
-    image: require('../assets/icons/plants.png')
-  } ,
-  {
-    id: 'plants 6',
-    name: 'Plant 6',
-    tags: ['plants' , 'everything'],
-    count: 147,
-    stage: 3,
-    type: 1,
-    status: 'sad',
-    image: require('../assets/icons/plants.png')
-  } ,
-  {
-    id: 'plants 7',
-    name: 'Plant 7',
-    tags: ['plants' , 'everything'],
-    count: 147,
-    stage: 1,
-    type: 2,
-    status: 'happy',
-    image: require('../assets/icons/plants.png')
-  } ,
-  {
-    id: 'plants 8',
-    name: 'Plant 8',
-    tags: ['plants' , 'everything'],
-    count: 147,
-    stage: 2,
-    type: 2,
-    status: 'happy',
-    image: require('../assets/icons/plants.png')
+    image: require('../assets/images/plant_one_big_happy.png')
   } 
   ];
+
+  // Array for the plants that fit in to terrarium 2
+  const plants2 = [
+    {
+      id: 'plants 4',
+      name: 'Plant 4',
+      tags: ['plants' , 'everything'],
+      count: 147,
+      stage: 1,
+      type: 1,
+      status: 'sad',
+      image: require('../assets/images/plant_one_sad_sml.png')
+    },
+    {
+      id: 'plants 5',
+      name: 'Plant 5',
+      tags: ['plants' , 'everything'],
+      count: 147,
+      stage: 2,
+      type: 1,
+      status: 'sad',
+      image: require('../assets/images/plant_one_med_sad.png')
+    } ,
+    {
+      id: 'plants 6',
+      name: 'Plant 6',
+      tags: ['plants' , 'everything'],
+      count: 147,
+      stage: 3,
+      type: 1,
+      status: 'sad',
+      image: require('../assets/images/plant_one_big_sad.png')
+    } ,
+    {
+      id: 'plants 7',
+      name: 'Plant 7',
+      tags: ['plants' , 'everything'],
+      count: 147,
+      stage: 1,
+      type: 2,
+      status: 'happy',
+      image: require('../assets/images/plant_two_happy_sml.png')
+    } ,
+    {
+      id: 'plants 8',
+      name: 'Plant 8',
+      tags: ['plants' , 'everything'],
+      count: 147,
+      stage: 2,
+      type: 2,
+      status: 'happy',
+      image: require('../assets/images/plant_two_happy_med.png')
+    } 
+    ];
+
+
+    /// Array for the shop items.
+    const shopPlants = [
+
+      {
+        id: 'seeds2',
+        name: 'Seeds type 2',
+        tags: ['shop' , 'everything'],
+        description: 'Seeds for x plant',
+        price: '$50',
+        image: require('../assets/icons/seeds.png')
+      } ,
+      {
+        id: 'seeds3',
+        name: 'Seeds type 3',
+        tags: ['shop', 'everything'],
+        description: 'Seeds for x plant',
+        price: '$50',
+        image: require('../assets/icons/seeds.png')
+      } ,
+      {
+        id: 'seeds4',
+        name: 'Seeds type 4',
+        tags: ['shop' , 'everything'],
+        description: 'Seeds for x plant',
+        price: '$50',
+        image: require('../assets/icons/seeds.png')
+      } ,
+      {
+        id: 'seeds5',
+        name: 'Seeds type 5',
+        tags: ['shop' , 'everything'],
+        description: 'Seeds for x plant',
+        price: '$50',
+        image: require('../assets/icons/seeds.png')
+      } ,
+      {
+        id: 'seeds6',
+        name: 'Seeds type 6',
+        tags: ['shop' , 'everything'],
+        description: 'Seeds for x plant',
+        price: '$50',
+        image: require('../assets/icons/seeds.png')
+      } ,
+      {
+        id: 'seeds7',
+        name: 'Seeds type 7',
+        tags: ['shop' , 'everything'],
+        price: '$50',
+        description: 'Seeds for x plant',
+        image: require('../assets/icons/seeds.png')
+      } ,
+      {
+        id: 'seeds8',
+        name: 'Seeds type 8',
+        tags: ['shop' , 'everything'],
+        price: '$50',
+        description: 'Seeds for x plant',
+        image: require('../assets/icons/seeds.png')
+      },
+      {
+        id: 'Terrarium_2',
+        name: 'Lucky Terrarium',
+        tags: ['terrarium', 'everything'],
+        size: 5,
+        price: '$500',
+        description: 'Buy more space!',
+        type: 1,
+        status: 0,
+        image: require('../assets/images/terrarium_2.png')
+      }
+
+    ]
+
+    // srray for main hub
 
   const categories = [
     {
@@ -103,68 +185,20 @@ const my_plants = [
       image: require('../assets/images/terrarium_2.png')
     },
     {
-      id: 'seeds2',
-      name: 'Seeds type 2',
+      id: 'BuyPlants',
+      name: 'Shop',
       tags: ['shop' , 'everything'],
-      description: 'Seeds for x plant',
+      description: 'More plants!',
       count: 16,
-      image: require('../assets/icons/seeds.png')
+      image: require('../assets/icons/flowers.png')
     } ,
     {
-      id: 'seeds3',
-      name: 'Seeds type 3',
-      tags: ['shop', 'everything'],
-      description: 'Seeds for x plant',
-      count: 16,
-      image: require('../assets/icons/seeds.png')
-    } ,
-    {
-      id: 'seeds4',
-      name: 'Seeds type 4',
-      tags: ['shop' , 'everything'],
-      description: 'Seeds for x plant',
-      count: 16,
-      image: require('../assets/icons/seeds.png')
-    } ,
-    {
-      id: 'seeds5',
-      name: 'Seeds type 5',
-      tags: ['shop' , 'everything'],
-      description: 'Seeds for x plant',
-      count: 16,
-      image: require('../assets/icons/seeds.png')
-    } ,
-    {
-      id: 'seeds6',
-      name: 'Seeds type 6',
-      tags: ['shop' , 'everything'],
-      description: 'Seeds for x plant',
-      count: 16,
-      image: require('../assets/icons/seeds.png')
-    } ,
-    {
-      id: 'seeds7',
-      name: 'Seeds type 7',
-      tags: ['shop' , 'everything'],
-      count: 16,
-      description: 'Seeds for x plant',
-      image: require('../assets/icons/seeds.png')
-    } ,
-    {
-      id: 'seeds8',
-      name: 'Seeds type 8',
-      tags: ['shop' , 'everything'],
-      count: 16,
-      description: 'Seeds for x plant',
-      image: require('../assets/icons/seeds.png')
-    } ,
-    {
-      id: 'bumpers',
-      name: 'Bumpers',
-      description: 'X named minigame',
+      id: 'tictactoe',
+      name: 'Tic Tac Toe',
+      description: '2 player',
       tags: ['minigames', 'everything' ],
       count: 16,
-      image: require('../assets/icons/seeds.png')
+      image: require('../assets/images/ttt.png')
     }
   ];
 
@@ -221,6 +255,8 @@ const my_plants = [
     explore,
     products,
     profile,
-    my_plants,
-    categories2
+    plants1,
+    plants2,
+    categories2,
+    shopPlants
   }
