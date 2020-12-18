@@ -12,14 +12,24 @@ import Forgot from '../screens/Forgot';
 import Explore from '../screens/Explore';
 // import Browse from '../screens/Browse';
 // import Product from '../screens/Product';
+import Profile from "./screens/Profile";
+import  {createSwitchNavigator} from 'react-navigation';
 import Settings from '../screens/Settings';
 
+const mainNavigator  = createSwitchNavigator ({
+  Login: { screen : Login },
+  Collection: { screen : Collection }
+})
 
 const screens = createStackNavigator({
   Welcome,
   Login,
   About,
   Collection,
+  Profile,
+  // SignUp,
+  // Forgot,
+  // Explore,
   SignUp,
   Forgot,
   Explore,
@@ -48,4 +58,4 @@ const screens = createStackNavigator({
   }
 });
 
-export default createAppContainer(screens);
+export default createAppContainer(screens, mainNavigator);
