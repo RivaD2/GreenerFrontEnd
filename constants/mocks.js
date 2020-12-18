@@ -238,18 +238,28 @@ const plants1 = [
   ];
   
   const profile = {
-    username: 'Gen',
-    location: 'Seattle',
+    name: 'Gen',
+    id: '',
     email: 'test@test.com',
     avatar: require('../assets/images/avatar.png'),
-    budget: 5000,
-    funds: 5000,
-    plants: 6,
-    monthly_cap: 7000,
-    notifications: true,
-    newsletter: false,
+    currency: 0,
+    plants: [],
   };
   
+  async function getUserPlants(id){
+    const userPlants = await fetch('http://localhost:3000/api/v1/user-plants');
+    const userPlantArray = await userPlants.json();
+    let finalPlantArray = [];
+    const plants = await fetch('http://localhost:3000/api/v1/plants');
+    const plantsArray = await plants.json();
+    for(let i = 0; i < plantsArray.length; i++){
+      if(userPlantArray.includes(plantsArray[i]._id)){
+        finalPlantArray.push(plantsArray[i]);
+      }
+    }
+    return finalPlantArray;
+  }
+
   export {
     categories,
     explore,
@@ -258,5 +268,6 @@ const plants1 = [
     plants1,
     plants2,
     categories2,
-    shopPlants
+    shopPlants,
+    getUserPlants,
   }

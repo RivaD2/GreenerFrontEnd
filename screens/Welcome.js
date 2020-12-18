@@ -155,16 +155,10 @@ export default class Welcome extends React.Component {
       <Block>
         <Block center bottom flex={0.4}>
           <Text h1 center bold>
-            Your fun app:
             <Text h1 primary> Greener.</Text>
           </Text>
           <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
-            Enjoy the experience.
           </Text>
-        </Block>
-        <Block center middle>
-          {this.renderIllustrations()}
-          {this.renderSteps()}
         </Block>
         <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
           <Button gradient onPress={() => this.props.navigation.navigate('Login')}>

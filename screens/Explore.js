@@ -10,6 +10,7 @@ import Game from "../components/Game";
 
 import { Card, Badge, Button, Block, Text, Divider } from "../components";
 import { theme, mocks } from "../constants";
+import { plants1 } from "../constants/mocks";
 const BasicSvg = () =>{
   <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
     <circle
@@ -28,13 +29,23 @@ export default class Explore extends React.Component {
     state = {
         plants1: [],
         plants2: [],
+        terrarium1: {},
         shopPlants: [],
       };
 
       componentDidMount() {
-        this.setState({ plants1: this.props.plants1 });
-        this.setState({ plants2: this.props.plants2});
-        this.setState({ shopPlants: this.props.shopPlants});
+          let userPlantArray = mocks.getUserPlants(mocks.profile.id);
+          for(let i = 0; i < userPlantArray.length; i++){
+              if(this.state.plants1.length <= 3){
+                  this.setState({...this.state, plants1: [...this.state.plants1, userPlantArray[i]]})
+              }
+              else if(this.state.plants2.length <= 5){
+                this.setState({...this.state, plants2: [...this.state.plants2, userPlantArray[i]]})
+              }
+          }
+        // this.setState({ plants1: this.props.plants1 });
+        // this.setState({ plants2: this.props.plants2});
+        // this.setState({ shopPlants: this.props.shopPlants});
       }
 
     render(){
