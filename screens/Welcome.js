@@ -15,81 +15,81 @@ export default class Welcome extends React.Component {
   scrollX = new Animated.Value(0);
 
   state = {
-    showInstructions : false,
+    showInstructions: false,
   }
 
-  renderInstructions(){
-    return(
-      <Modal  animationType="slide" visible={this.state.showInstructions}>
-      <Block padding={[theme.sizes.padding * 2, theme.sizes.padding]} space="between">
-        <Text h2 light>Instructions</Text>
+  renderInstructions() {
+    return (
+      <Modal animationType="slide" visible={this.state.showInstructions}>
+        <Block padding={[theme.sizes.padding * 2, theme.sizes.padding]} space="between">
+          <Text h2 light>Instructions</Text>
 
-        <ScrollView style={{ marginVertical: theme.sizes.padding }}>
+          <ScrollView style={{ marginVertical: theme.sizes.padding }}>
 
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
       </Text>
-      <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
-        1. We can use this or not.  
-      </Text> 
-      </ScrollView>
-      <Block middle padding={[theme.sizes.base / 2, 0]}>
+            <Text caption gray height={24} style={{ marginBottom: theme.sizes.base }}>
+              1. We can use this or not.
+      </Text>
+          </ScrollView>
+          <Block middle padding={[theme.sizes.base / 2, 0]}>
             <Button gradient onPress={() => this.setState({ showInstructions: false })}>
               <Text center white>I understand</Text>
             </Button>
-         </Block>
-      
-  </Block>
+          </Block>
 
-</Modal>
+        </Block>
+
+      </Modal>
     )
   }
 
@@ -130,23 +130,23 @@ export default class Welcome extends React.Component {
     const stepPosition = Animated.divide(this.scrollX, width);
     return (
       <Block row center middle style={styles.stepsContainer}>
-   {illustrations.map((item, index) => {
-     const opacity = stepPosition.interpolate({
-       inputRange: [index - 1, index, index + 1],
-       outputRange: [0.4, 1, 0.4],
-       extrapolate: 'clamp',
-     });
-     return (
-       <Block
-         animated
-         flex={false}
-         key={`step-${index}`}
-         color="gray"
-         style={[styles.steps, { opacity }]}
-       />
-     )
-   })}
- </Block>
+        {illustrations.map((item, index) => {
+          const opacity = stepPosition.interpolate({
+            inputRange: [index - 1, index, index + 1],
+            outputRange: [0.4, 1, 0.4],
+            extrapolate: 'clamp',
+          });
+          return (
+            <Block
+              animated
+              flex={false}
+              key={`step-${index}`}
+              color="gray"
+              style={[styles.steps, { opacity }]}
+            />
+          )
+        })}
+      </Block>
     )
   }
 
@@ -168,14 +168,17 @@ export default class Welcome extends React.Component {
         </Block>
         <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
           <Button gradient onPress={() => this.props.navigation.navigate('Login')}>
-            <Text center semibold white>OAUTH</Text>
+            <Text center semibold white>Welcome</Text>
+          </Button>
+          <Button shadow onPress={() => this.props.navigation.navigate('SignUp')}>
+            <Text center semibold>Signup</Text>
           </Button>
           <Button onPress={() => this.setState({ showInstructions: true })}>
-      <Text center caption gray>About Greener</Text>
+            <Text center caption gray>About Greener</Text>
           </Button>
           {this.renderInstructions()}
         </Block>
-        
+
       </Block>
 
     );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+  Alert,
   ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
@@ -9,20 +10,18 @@ import {
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
-const VALID_EMAIL = "test@test.com";
-const VALID_PASSWORD = "12345";
+const VALID_EMAIL = "forgotpass@greener.com";
 
-export default class Login extends Component {
+export default class Forgot extends Component {
   state = {
     email: VALID_EMAIL,
-    password: VALID_PASSWORD,
     errors: [],
     loading: false
   };
 
-  handleLogin() {
+  handleForgot() {
     const { navigation } = this.props;
-    const { email, password } = this.state;
+    const { email } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
@@ -32,14 +31,32 @@ export default class Login extends Component {
     if (email !== VALID_EMAIL) {
       errors.push("email");
     }
-    if (password !== VALID_PASSWORD) {
-      errors.push("password");
-    }
 
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
-      navigation.navigate("Browse");
+
+        // I believe the email logic would go here!
+      Alert.alert(
+        "Password sent!",
+        "Please check you email.",
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              navigation.navigate("Login");
+            }
+          }
+        ],
+        { cancelable: false }
+      );
+    } else {
+      Alert.alert(
+        "Error",
+        "Please check you Email address.",
+        [{ text: "Try again" }],
+        { cancelable: false }
+      );
     }
   }
 
@@ -49,10 +66,10 @@ export default class Login extends Component {
     const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
 
     return (
-      <KeyboardAvoidingView style={styles.login} behavior="padding">
+      <KeyboardAvoidingView style={styles.forgot} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
           <Text h1 bold>
-            Login... If we even need this page
+            Forgot
           </Text>
           <Block middle>
             <Input
@@ -62,34 +79,25 @@ export default class Login extends Component {
               defaultValue={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />
-            <Input
-              secure
-              label="Password"
-              error={hasErrors("password")}
-              style={[styles.input, hasErrors("password")]}
-              defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
-            />
-            <Button gradient onPress={() => this.handleLogin()}>
+            <Button gradient onPress={() => this.handleForgot()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
               ) : (
-                  <Text bold white center>
-                    Login
-                  </Text>
-                )}
+                <Text bold white center>
+                  Forgot
+                </Text>
+              )}
             </Button>
 
-            <Button onPress={() => navigation.navigate('Forgot')}>
-              <Text gray caption center style={{ textDecorationLine: 'underline' }}>
-                Forgot your password?
+            <Button onPress={() => navigation.navigate("Login")}>
+              <Text
+                gray
+                caption
+                center
+                style={{ textDecorationLine: "underline" }}
+              >
+                Back to Login
               </Text>
-            </Button>
-            <Button gradient >
-              <Text center semibold white>Google Oauth</Text>
-            </Button>
-            <Button gradient onPress={() => this.props.navigation.navigate('Collection')}>
-              <Text center semibold white>BYPASS</Text>
             </Button>
           </Block>
         </Block>
@@ -99,7 +107,7 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  login: {
+  forgot: {
     flex: 1,
     justifyContent: "center"
   },
