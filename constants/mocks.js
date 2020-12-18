@@ -1,9 +1,9 @@
 // Array for the plants that fit in to terrarium 1
-
+////Some API all
 const plants1 = [
   {
     id: 'plant 1',
-    name: 'Plant 1',
+    name: 'Plant 1 whatewver',
     tags: ['plants', 'everything'],
     count: 147,
     stage: 1,

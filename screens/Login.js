@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import {
   ActivityIndicator,
@@ -154,3 +155,4 @@ const styles = StyleSheet.create({
     borderBottomColor: theme.colors.accent
   }
 });
+
