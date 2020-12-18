@@ -13,7 +13,7 @@ import Collection from '../screens/Collection';
 // import Browse from '../screens/Browse';
 // import Product from '../screens/Product';
 // import Settings from '../screens/Settings';
-import Profile from "./screens/Profile";
+import Profile from "../screens/Profile";
 import  {createSwitchNavigator} from 'react-navigation';
 
 const mainNavigator  = createSwitchNavigator ({
