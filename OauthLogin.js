@@ -2,6 +2,7 @@ import React, {Component} from "react";
 //import React, { useEffect, useState } from 'react';
 import * as Google from 'expo-google-app-auth';
 import {Text, View, StyleSheet, Button } from 'react-native';
+import Login from './screens/Login';
 
 const IOS_CLIENT_ID = '872509857984-nv75qdpnj41i8qjfeb5pplnncmnd6stv.apps.googleusercontent.com';
 const initialState = {
