@@ -1,7 +1,6 @@
 {
   "expo": {
     "name": "anonymousplantgame",
-    "scheme": "greener",
     "slug": "anonymousplantgame",
     "version": "1.0.0",
     "orientation": "portrait",
