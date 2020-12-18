@@ -61,7 +61,6 @@ export default class Login extends Component {
         .then((response) => response.json())
         .then((json) => {
           console.log('Sent Json', json);
-          Alert(json);
           this.setState({
             json: json
           });
