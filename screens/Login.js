@@ -3,18 +3,20 @@ import {
   ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from "react-native";
 
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 
-const VALID_EMAIL = "test@test.com";
-const VALID_PASSWORD = "12345";
+const VALID_USERNAME = "Al";
+const VALID_PASSWORD = "123456";
+let currency = 5;
 
 export default class Login extends Component {
   state = {
-    email: VALID_EMAIL,
+    username: VALID_USERNAME,
     password: VALID_PASSWORD,
     errors: [],
     loading: false
@@ -22,15 +24,15 @@ export default class Login extends Component {
 
   handleLogin() {
     const { navigation } = this.props;
-    const { email, password } = this.state;
+    const { username, password } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
     this.setState({ loading: true });
 
     // check with backend API or with some static data
-    if (email !== VALID_EMAIL) {
-      errors.push("email");
+    if (username !== VALID_USERNAME) {
+      errors.push("username");
     }
     if (password !== VALID_PASSWORD) {
       errors.push("password");
@@ -39,7 +41,47 @@ export default class Login extends Component {
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
-      navigation.navigate("Browse");
+      /// Pushing new USER to API
+      
+
+      fetch('http://localhost:3001/api/v1/user/signIn', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          
+          name: "Al",
+          password: "123456",
+
+        }),
+        
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log('Sent Json', json);
+          Alert(json);
+          this.setState({
+            json: json
+          });
+        })
+        //
+        
+      Alert.alert(
+        "Success!",
+        "You are logged in.",
+  
+        [
+          {
+            text: "Continue",
+            onPress: () => {
+              navigation.navigate("Collection");
+            }
+          }
+        ],
+        { cancelable: false }
+      );
     }
   }
 
@@ -55,12 +97,12 @@ export default class Login extends Component {
             Login... If we even need this page
           </Text>
           <Block middle>
-            <Input
-              label="Email"
-              error={hasErrors("email")}
-              style={[styles.input, hasErrors("email")]}
-              defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
+          <Input
+              label="Username"
+              error={hasErrors("username")}
+              style={[styles.input, hasErrors("username")]}
+              defaultValue={this.state.username}
+              onChangeText={text => this.setState({ username: text })}
             />
             <Input
               secure
