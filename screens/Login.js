@@ -19,6 +19,7 @@ export default class LoginScreen extends Component {
                 this.props.navigation.navigate('Collection', {
                     username: result.user.givenName
                 })
+                console.log('accessToken', result.accessToken)
                 return result.accessToken;
             } else {
                 return {cancelled: true};
