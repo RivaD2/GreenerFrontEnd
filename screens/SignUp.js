@@ -21,20 +21,46 @@ export default class SignUp extends Component {
 
   handleSignUp() {
     const { navigation } = this.props;
-    const { email, username, password } = this.state;
+    const { username, password } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
     this.setState({ loading: true });
 
     // check with backend API or with some static data
-    if (!email) errors.push("email");
     if (!username) errors.push("username");
     if (!password) errors.push("password");
 
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
+      /// Pushing new USER to API
+      
+
+      fetch('http://localhost:3001/api/v1/user/signUp', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          
+          name: username,
+          password: password,
+          role: "user",
+          currency: 50
+
+        }),
+        
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log('Sent Json', json);
+          this.setState({
+            json: json
+          });
+        })
+        //
       Alert.alert(
         "Success!",
         "Your account has been created",
@@ -42,7 +68,7 @@ export default class SignUp extends Component {
           {
             text: "Continue",
             onPress: () => {
-              navigation.navigate("Browse");
+              navigation.navigate("Collection");
             }
           }
         ],
@@ -63,14 +89,6 @@ export default class SignUp extends Component {
             Sign Up
           </Text>
           <Block middle>
-            <Input
-              email
-              label="Email"
-              error={hasErrors("email")}
-              style={[styles.input, hasErrors("email")]}
-              defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
-            />
             <Input
               label="Username"
               error={hasErrors("username")}
