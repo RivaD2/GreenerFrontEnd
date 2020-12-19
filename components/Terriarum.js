@@ -6,8 +6,28 @@ import {
   } from "react-native";
 import {Card, Badge, Button, Block, Text, Divider} from "../components";
 import {theme} from "../constants";
-
+// Notes: Step 1: Make an arr of buttons to iterate over
+         // Step2: Disable buttons that aren't pressed through each iteration
+        // Step 3: Track if specific button is currently selected using a state value
 export default class Terrarium extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            selectedButton: undefined
+        }
+        this.buttons = [{
+            id: 'water',
+            name: "Water Plant"
+        },
+        {
+            id: 'talk',
+            name: "Talk to Plant"
+        },
+        {
+            id: 'sunlight',
+            name: "Sunlight"
+        }]
+    }
     render() {
         // deconstructing props so I don't have to use this.props a trillion times
         const {styles, name, plants, profile} = this.props;
@@ -20,6 +40,17 @@ export default class Terrarium extends React.Component {
                     <Button onPress={() => navigation.navigate("Settings")}>
                         <Image source={profile.avatar} style={styles.avatar} />
                     </Button>
+                </Block>
+                <Block flex={true} row center space="between" style={styles.header}>
+                    {this.buttons.map(button => (
+                        <Button key={button.id} gradient={false} onPress={() =>{
+                            
+                        }}>
+                            <Text bold center>
+                              {button.name} 
+                            </Text>
+                        </Button>
+                    ))}
                 </Block>
                 <ScrollView
                 showsVerticalScrollIndicator={false}
