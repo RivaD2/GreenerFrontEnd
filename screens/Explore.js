@@ -22,9 +22,14 @@ const BasicSvg = () =>{
   </svg>}
 
 const { width } = Dimensions.get("window");
+import { connect } from 'react-redux';
+import { updateUser } from '../store/user.js';
 
-export default class Explore extends React.Component {
-
+class Explore extends React.Component {
+constructor(props){
+    super(props);
+    this.props = props;
+}
     state = {
         plants1: [],
         plants2: [],
@@ -32,6 +37,7 @@ export default class Explore extends React.Component {
       };
 
       componentDidMount() {
+          this.props.updateUser({"name": 'Bryant'})
         this.setState({ plants1: this.props.plants1 });
         this.setState({ plants2: this.props.plants2});
         this.setState({ shopPlants: this.props.shopPlants});
@@ -54,7 +60,12 @@ export default class Explore extends React.Component {
         return (
             <>
             <If condition={category.name === 'Happy Terrarium'}>
-            
+            <Block>
+                <Text>
+            {JSON.stringify(this.props.user)}
+
+                </Text>
+            </Block>
             <Block>
                 <Block flex={false} row center space="between" style={styles.header}>
                     <Text h1 bold>
@@ -232,6 +243,15 @@ export default class Explore extends React.Component {
     }
   
 }
+
+const mapStateToProps = (state) => ( {
+    user: state.user,
+  })
+  
+  const mapDispatchToProps = ({
+    updateUser
+  })
+  export default connect(mapStateToProps, mapDispatchToProps)(Explore);
 
 Explore.defaultProps = {
     profile: mocks.profile,

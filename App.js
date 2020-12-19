@@ -5,7 +5,8 @@ import { Block } from './components';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import Navigation from './navigation/index';
-
+import { Provider } from 'react-redux';
+import store from './store/index.js';
 // context api: wrap everything in a provider
 // import all used images
 const images = [
@@ -70,9 +71,11 @@ export default class App extends React.Component {
     }
 
     return (
+      <Provider store={store()}>
       <Block white>
       <Navigation />
     </Block>
+      </Provider>
     );
   }
 }
