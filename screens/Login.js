@@ -10,6 +10,7 @@ import {
 
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
+import OAuth from '../OauthLogin';
 
 const VALID_USERNAME = "Al";
 const VALID_PASSWORD = "123456";
@@ -127,7 +128,7 @@ export default class Login extends Component {
                 Forgot your password?
               </Text>
             </Button>
-            <Button gradient >
+            <Button gradient onPress={() => this.props.navigation.navigate('OAuth')}>
               <Text center semibold white>Google Oauth</Text>
             </Button>
             <Button gradient onPress={() => this.props.navigation.navigate('Collection')}>

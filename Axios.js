@@ -7,7 +7,7 @@ const instance = axios.create({
 headers: { 'Content-Type': 'application/json' , 'Access-Control-Allow-Origin': '*'}
 });
 
-const getUser = async ()=> {
+const getUserData = async ()=> {
   try {
     const user = await instance.get();
     return user.data;

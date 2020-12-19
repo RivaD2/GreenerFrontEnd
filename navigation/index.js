@@ -16,15 +16,17 @@ import Explore from '../screens/Explore';
 import Profile from "../screens/Profile";
 import  {createSwitchNavigator} from 'react-navigation';
 import Settings from '../screens/Settings';
+import OAuth from '../OauthLogin';
 
 const mainNavigator  = createSwitchNavigator ({
-  Login: { screen : Login },
+  OAuth: { screen : OAuth },
   Collection: { screen : Collection }
 })
 
 const screens = createStackNavigator({
   Welcome,
   Login,
+  OAuth,
   About,
   Collection,
   Profile,
