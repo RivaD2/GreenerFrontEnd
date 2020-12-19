@@ -10,7 +10,7 @@ import {
 
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
-import OAuth from '../OauthLogin';
+import OAuth from '../OauthLogin.js';
 
 const VALID_USERNAME = "Al";
 const VALID_PASSWORD = "123456";
