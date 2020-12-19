@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 // import { AppLoading } from 'expo'; not working anymore
-import { Block } from './components';
+import Block  from './components';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import Navigation from './navigation/index';
@@ -43,6 +43,10 @@ handleResourcesAsync = async () => {
 }
 
 export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.props = props;
+  }
   state = {
     isLoadingComplete: false,
   }
@@ -59,7 +63,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+    if (!this.state.isLoadingComplete && !this.state.skipLoadingScreen) {
       return (
         <AppLoading
           startAsync={this.handleResourcesAsync}
@@ -70,7 +74,7 @@ export default class App extends React.Component {
     }
 
     return (
-      <Block white>
+      <Block>
       <Navigation />
     </Block>
     );

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Alert,
   ActivityIndicator,
@@ -12,28 +12,27 @@ import { theme } from "../constants";
 
 const VALID_EMAIL = "forgotpass@greener.com";
 
-export default class Forgot extends Component {
-  state = {
-    email: VALID_EMAIL,
-    errors: [],
-    loading: false
-  };
+export default function Forgot(props){
+  const [email, setEmail] = useState(VALID_EMAIL);
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  handleForgot() {
+  function handleForgot() {
     const { navigation } = this.props;
     const { email } = this.state;
-    const errors = [];
+    const errorsz = [];
 
     Keyboard.dismiss();
-    this.setState({ loading: true });
+    setLoading(true);
 
     // check with backend API or with some static data
     if (email !== VALID_EMAIL) {
-      errors.push("email");
+      setErrors([...errors, 'email']);
     }
 
-    this.setState({ errors, loading: false });
-
+    // this.setState({ errors, loading: false });
+    setErrors(errorsz);
+    setLoading(false);
     if (!errors.length) {
 
         // I believe the email logic would go here!
@@ -60,9 +59,7 @@ export default class Forgot extends Component {
     }
   }
 
-  render() {
-    const { navigation } = this.props;
-    const { loading, errors } = this.state;
+    const { navigation } = props;
     const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
 
     return (
@@ -76,10 +73,10 @@ export default class Forgot extends Component {
               label="Email"
               error={hasErrors("email")}
               style={[styles.input, hasErrors("email")]}
-              defaultValue={this.state.email}
-              onChangeText={text => this.setState({ email: text })}
+              defaultValue={email}
+              onChangeText={text => setEmail(text)}
             />
-            <Button gradient onPress={() => this.handleForgot()}>
+            <Button gradient onPress={() => handleForgot()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
               ) : (
@@ -103,7 +100,6 @@ export default class Forgot extends Component {
         </Block>
       </KeyboardAvoidingView>
     );
-  }
 }
 
 const styles = StyleSheet.create({

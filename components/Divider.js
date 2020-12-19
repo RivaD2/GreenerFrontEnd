@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import Block from './Block';
 import { theme } from '../constants';
 
-export default class Divider extends Component {
-  render() {
-    const { color, style, ...props } = this.props;
+export default function Divider(props){
+    const { color, style } = props;
     const dividerStyles = [
       styles.divider,
       style,
@@ -19,7 +18,6 @@ export default class Divider extends Component {
         {...props}
       />
     )
-  }
 }
 
 export const styles = StyleSheet.create({

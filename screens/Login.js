@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   ActivityIndicator,
   Keyboard,
@@ -15,31 +15,38 @@ const VALID_USERNAME = "Al";
 const VALID_PASSWORD = "123456";
 let currency = 5;
 
-export default class Login extends Component {
+export default function Login(props){
   state = {
     username: VALID_USERNAME,
     password: VALID_PASSWORD,
     errors: [],
     loading: false
   };
+  const [username, setUsername] = useState(VALID_USERNAME);
+  const [password, setPassword] = useState(VALID_PASSWORD);
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
 
-  handleLogin() {
-    const { navigation } = this.props;
-    const { username, password } = this.state;
-    const errors = [];
+
+  function handleLogin() {
+    const { navigation } = props;
+    const errorsz = [];
 
     Keyboard.dismiss();
-    this.setState({ loading: true });
+    setLoading(true);
 
     // check with backend API or with some static data
     if (username !== VALID_USERNAME) {
-      errors.push("username");
+      setErrors([...errors, 'username']);
     }
     if (password !== VALID_PASSWORD) {
-      errors.push("password");
+      setErrors([...errors, 'password']);
     }
 
-    this.setState({ errors, loading: false });
+    // this.setState({ errors, loading: false });
+    setErrors(errorsz)
+    setLoading(false);
 
     if (!errors.length) {
       /// Pushing new USER to API
@@ -62,9 +69,8 @@ export default class Login extends Component {
         .then((response) => response.json())
         .then((json) => {
           console.log('Sent Json', json);
-          this.setState({
-            json: json
-          });
+
+          setUser(json);
         })
         //
         
@@ -85,9 +91,7 @@ export default class Login extends Component {
     }
   }
 
-  render() {
-    const { navigation } = this.props;
-    const { loading, errors } = this.state;
+    const { navigation } = props;
     const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
 
     return (
@@ -101,18 +105,18 @@ export default class Login extends Component {
               label="Username"
               error={hasErrors("username")}
               style={[styles.input, hasErrors("username")]}
-              defaultValue={this.state.username}
-              onChangeText={text => this.setState({ username: text })}
+              defaultValue={username}
+              onChangeText={text => setUsername(text)}
             />
             <Input
               secure
               label="Password"
               error={hasErrors("password")}
               style={[styles.input, hasErrors("password")]}
-              defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
+              defaultValue={password}
+              onChangeText={text => setPassword(text)}
             />
-            <Button gradient onPress={() => this.handleLogin()}>
+            <Button gradient onPress={() => handleLogin()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
               ) : (
@@ -130,14 +134,13 @@ export default class Login extends Component {
             <Button gradient >
               <Text center semibold white>Google Oauth</Text>
             </Button>
-            <Button gradient onPress={() => this.props.navigation.navigate('Collection')}>
+            <Button gradient onPress={() => props.navigation.navigate('Collection')}>
               <Text center semibold white>BYPASS</Text>
             </Button>
           </Block>
         </Block>
       </KeyboardAvoidingView>
     );
-  }
 }
 
 const styles = StyleSheet.create({

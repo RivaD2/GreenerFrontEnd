@@ -4,8 +4,7 @@ import { Text, StyleSheet } from "react-native";
 
 import { theme } from "../constants";
 
-export default class Typography extends Component {
-  render() {
+export default function Typography(props){
     const {
       h1,
       h2,
@@ -39,9 +38,8 @@ export default class Typography extends Component {
       gray,
       gray2,
       style,
-      children,
-      ...props
-    } = this.props;
+      children
+    } = props;
 
     const textStyles = [
       styles.text,
@@ -84,7 +82,6 @@ export default class Typography extends Component {
         {children}
       </Text>
     );
-  }
 }
 
 const styles = StyleSheet.create({

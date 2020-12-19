@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dimensions,
   Image,
@@ -12,33 +12,37 @@ import { theme, mocks } from "../constants";
 
 const { width } = Dimensions.get("window");
 
-class Browse extends Component {
+export default function Browse(props){
   state = {
     active: "Everything",
     categories: []
   };
+  const [active, setActive] = useState('Everything');
+  const [categories, setCategories] = useState([]);
 
-  componentDidMount() {
-    this.setState({ categories: this.props.categories });
-  }
+  useEffect(() => {
+    setCategories({ categories: this.props.categories });
 
-  handleTab = tab => {
-    const { categories } = this.props;
+  }, [])
+
+ const handleTab = tab => {
+    const { categories } = props;
     const filtered = categories.filter(category =>
       category.tags.includes(tab.toLowerCase())
     );
 
-    this.setState({ active: tab, categories: filtered });
+    setActive(tab);
+    setCategories([filtered]);
+
   };
 
-  renderTab(tab) {
-    const { active } = this.state;
+  function renderTab(tab) {
     const isActive = active === tab;
 
     return (
       <TouchableOpacity
         key={`tab-${tab}`}
-        onPress={() => this.handleTab(tab)}
+        onPress={() => handleTab(tab)}
         style={[styles.tab, isActive ? styles.active : null]}
       >
         <Text size={16} medium gray={!isActive} secondary={isActive}>
@@ -48,9 +52,7 @@ class Browse extends Component {
     );
   }
 
-  render() {
-    const { profile, navigation } = this.props;
-    const { categories } = this.state;
+    const { profile, navigation } = props;
     const tabs = ['Everything', 'Terrarium', 'Minigames', 'Shop'];
 
 
@@ -100,7 +102,6 @@ class Browse extends Component {
         </ScrollView>
       </Block>
     );
-  }
 }
 
 Browse.defaultProps = {
@@ -108,7 +109,6 @@ Browse.defaultProps = {
   categories: mocks.categories
 };
 
-export default Browse;
 
 const styles = StyleSheet.create({
   header: {

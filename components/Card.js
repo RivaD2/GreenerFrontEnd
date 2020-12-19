@@ -4,9 +4,8 @@ import { StyleSheet } from "react-native";
 import Block from "./Block";
 import { theme } from "../constants";
 
-export default class Card extends Component {
-  render() {
-    const { color, style, children, ...props } = this.props;
+export default function Card(props){
+    const { color, style, children } = props;
     const cardStyles = [styles.card, style];
 
     return (
@@ -14,7 +13,6 @@ export default class Card extends Component {
         {children}
       </Block>
     );
-  }
 }
 
 export const styles = StyleSheet.create({

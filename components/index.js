@@ -1,11 +1,10 @@
-import Block from "./Block";
-import Badge from "./Badge";
-import Button from "./Button";
-import Card from "./Card";
-import Input from "./Input";
-import Text from "./Text";
-import Progress from "./Progress";
-import Divider from "./Divider";
-import Switch from "./Switch";
+import Block from "./Block.js";
+import Badge from "./Badge.js";
+import Button from "./Button.js";
+import Card from "./Card.js";
+import Input from "./Input.js";
+import Text from "./Text.js";
+import Divider from "./Divider.js";
+import Switch from "./Switch.js";
 
-export { Block, Badge, Button, Card, Input, Text, Progress, Divider, Switch };
+export default { Block, Badge, Card, Input, Text, Divider, Switch, Button };

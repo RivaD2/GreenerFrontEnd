@@ -4,9 +4,8 @@ import { LinearGradient } from 'expo';
 
 import Block from './Block';
 
-class Progress extends Component {
-  render() {
-    const { startColor, endColor, value, opacity, style, ...props } = this.props;
+function Progress(props){
+    const { startColor, endColor, value, opacity, style } = props;
 
     return (
       <Block row center color="gray3" style={[styles.background, styles]} {...props}>
@@ -23,7 +22,6 @@ class Progress extends Component {
         </LinearGradient>
       </Block>
     )
-  }
 }
 
 Progress.defaultProps = {

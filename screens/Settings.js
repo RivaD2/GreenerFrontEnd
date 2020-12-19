@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, StyleSheet, ScrollView, TextInput } from "react-native";
 import Slider from "react-native-slider";
 
 import { Divider, Button, Block, Text, Switch } from "../components";
 import { theme, mocks } from "../constants";
 
-class Settings extends Component {
+function Settings(props){
     state = {
         budget: 850,
         monthly: 1700,
@@ -14,31 +14,35 @@ class Settings extends Component {
         editing: null,
         profile: {}
     };
+    const [budget, setBudget] = useState(850);
+    const [monthly, setMonthly] = useState(1700);
+    const [notifcations, setNotifications] = useState(true);
+    const [editing, setEditing] = useState(null);
+    const [profile, setProfile] = useState({});
+    const [newsletter, setNewsletter] = useState(false);
 
-    componentDidMount() {
-        this.setState({ profile: this.props.profile });
-    }
+    useEffect(() => {
+        setProfile(props.profile);
+    }, [])
 
-    handleEdit(name, text) {
+    function handleEdit(name, text) {
         const { profile } = this.state;
         profile[name] = text;
 
         this.setState({ profile });
     }
 
-    toggleEdit(name) {
-        const { editing } = this.state;
-        this.setState({ editing: !editing ? name : null });
+    function toggleEdit(name) {
+        setEditing(!editing ? name : null);
     }
 
-    renderEdit(name) {
-        const { profile, editing } = this.state;
+    function renderEdit(name) {
 
         if (editing === name) {
             return (
                 <TextInput
                     defaultValue={profile[name]}
-                    onChangeText={text => this.handleEdit([name], text)}
+                    onChangeText={text => handleEdit([name], text)}
                 />
             );
         }
@@ -46,8 +50,6 @@ class Settings extends Component {
         return <Text bold>{profile[name]}</Text>;
     }
 
-    render() {
-        const { profile, editing } = this.state;
 
         return (
             <Block>
@@ -82,12 +84,12 @@ class Settings extends Component {
                                 <Text gray2 style={{ marginBottom: 10 }}>
                                     Location
                 </Text>
-                                {this.renderEdit("location")}
+                                {renderEdit("location")}
                             </Block>
                             <Text
                                 medium
                                 secondary
-                                onPress={() => this.toggleEdit("location")}
+                                onPress={() => toggleEdit("location")}
                             >
                                 {editing === "location" ? "Save" : "Edit"}
                             </Text>
@@ -131,7 +133,7 @@ class Settings extends Component {
                             <Text gray2>Notifications</Text>
                             <Switch
                                 value={this.state.notifications}
-                                onValueChange={value => this.setState({ notifications: value })}
+                                onValueChange={value => setNotifications(value)}
                             />
                         </Block>
 
@@ -144,14 +146,13 @@ class Settings extends Component {
                             <Text gray2>Newsletter</Text>
                             <Switch
                                 value={this.state.newsletter}
-                                onValueChange={value => this.setState({ newsletter: value })}
+                                onValueChange={value => setNewsletter(value)}
                             />
                         </Block>
                     </Block>
                 </ScrollView>
             </Block>
         );
-    }
 }
 
 Settings.defaultProps = {

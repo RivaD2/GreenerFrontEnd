@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { theme } from "../constants";
 
-class Button extends Component {
-  render() {
+export default function Button(props){
     const {
       style,
       opacity,
@@ -17,8 +16,7 @@ class Button extends Component {
       locations,
       shadow,
       children,
-      ...props
-    } = this.props;
+    } = props;
 
     const buttonStyles = [
       styles.button,
@@ -56,8 +54,7 @@ class Button extends Component {
       >
         {children}
       </TouchableOpacity>
-    );
-  }
+    )
 }
 
 Button.defaultProps = {
@@ -70,7 +67,7 @@ Button.defaultProps = {
   color: theme.colors.white
 };
 
-export default Button;
+
 
 const styles = StyleSheet.create({
   button: {

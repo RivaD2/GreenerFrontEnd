@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dimensions,
   Image,
@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
-import Game from "../components/Game";
 
 import { Card, Badge, Button, Block, Text, Divider } from "../components";
 import { theme, mocks } from "../constants";
@@ -24,36 +23,26 @@ const BasicSvg = () =>{
 
 const { width } = Dimensions.get("window");
 
-export default class Explore extends React.Component {
+export default function Explore(props){
+const [plants1, setPlants1] = useState([]);
+const [plants2, setPlants2] = useState([]);
+const [terrarium1, setTerrarium1] = useState({});
+const [shopPlants, setShopPlants] = useStaTE([]);
 
-    state = {
-        plants1: [],
-        plants2: [],
-        terrarium1: {},
-        shopPlants: [],
-      };
+useEffect(() => {
+    let userPlantArray = mocks.getUserPlants(mocks.profile.id);
+    for(let i = 0; i < userPlantArray.length; i++){
+        if(plants1.length <= 3){
+            this.setPlants1([...plants1, userPlantArray[i]])
+        }
+        else if(plants2.length <= 5){
+          this.setPlants2([...plants2, userPlantArray[i]])
+        }
+    }
+},[])
 
-      componentDidMount() {
-          let userPlantArray = mocks.getUserPlants(mocks.profile.id);
-          for(let i = 0; i < userPlantArray.length; i++){
-              if(this.state.plants1.length <= 3){
-                  this.setState({...this.state, plants1: [...this.state.plants1, userPlantArray[i]]})
-              }
-              else if(this.state.plants2.length <= 5){
-                this.setState({...this.state, plants2: [...this.state.plants2, userPlantArray[i]]})
-              }
-          }
-        // this.setState({ plants1: this.props.plants1 });
-        // this.setState({ plants2: this.props.plants2});
-        // this.setState({ shopPlants: this.props.shopPlants});
-      }
-
-    render(){
         
-        const {profile, navigation} = this.props;
-        const { plants1 } = this.state;
-        const { plants2 } = this.state;
-        const { shopPlants } = this.state;
+        const {profile, navigation} = props;
         const category = navigation.getParam('category');
         const plant = navigation.getParam('plant') || 'plant';
         
@@ -233,14 +222,12 @@ export default class Explore extends React.Component {
 
             <If condition={category.name === 'Tic Tac Toe'}>
             <Block center>
-                        <Game />
             </Block>
             </If>
 
 
             </>
         );
-    }
   
 }
 

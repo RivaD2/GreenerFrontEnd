@@ -1,12 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { StyleSheet } from "react-native";
 
 import Block from "./Block";
 import { theme } from "../constants";
 
-export default class Badge extends Component {
-  render() {
-    const { children, style, size, color, ...props } = this.props;
+function Badge(props){
+    const { children, style, size, color } = props;
 
     const badgeStyles = StyleSheet.flatten([
       styles.badge,
@@ -30,7 +29,6 @@ export default class Badge extends Component {
         {children}
       </Block>
     );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -40,3 +38,4 @@ const styles = StyleSheet.create({
     borderRadius: theme.sizes.border
   }
 });
+export default Badge;

@@ -3,9 +3,9 @@ import { StyleSheet, View, Animated } from "react-native";
 
 import { theme } from "../constants";
 
-export default class Block extends Component {
-  handleMargins() {
-    const { margin } = this.props;
+export default function Block(props){
+  function handleMargins() {
+    const { margin } = props;
     if (typeof margin === "number") {
       return {
         marginTop: margin,
@@ -50,8 +50,8 @@ export default class Block extends Component {
     }
   }
 
-  handlePaddings() {
-    const { padding } = this.props;
+  function handlePaddings() {
+    const { padding } = props;
     if (typeof padding === "number") {
       return {
         paddingTop: padding,
@@ -96,7 +96,6 @@ export default class Block extends Component {
     }
   }
 
-  render() {
     const {
       flex,
       row,
@@ -117,8 +116,7 @@ export default class Block extends Component {
       wrap,
       style,
       children,
-      ...props
-    } = this.props;
+    } = props;
 
     const blockStyles = [
       styles.block,
@@ -132,8 +130,8 @@ export default class Block extends Component {
       right && styles.right,
       top && styles.top,
       bottom && styles.bottom,
-      margin && { ...this.handleMargins() },
-      padding && { ...this.handlePaddings() },
+      margin && { ...handleMargins() },
+      padding && { ...handlePaddings() },
       card && styles.card,
       shadow && styles.shadow,
       space && { justifyContent: `space-${space}` },
@@ -156,7 +154,6 @@ export default class Block extends Component {
         {children}
       </View>
     );
-  }
 }
 
 export const styles = StyleSheet.create({

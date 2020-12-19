@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default class Users extends Component {
-  constructor(props) {
-        super(props);
-        this.state = { users: [] };
-    }
-  componentDidMount() {
-    axios.get('/user/signup')
+export default function Users(props){
+    const [users, setUsers] = useState([]);
+    const [collection, setCollection] = useState([]);
+
+
+    useEffect(() => {
+        axios.get('/user/signup')
         .then(res => {
-            this.setState({ users: res.data });
+            setUsers([...users, res.data]);
         })
         .catch(function (error) {
             console.log(error);
@@ -17,10 +17,10 @@ export default class Users extends Component {
         // These endpoints are not to be taken literally, they are placeholders
     axios.get('user/collection')
         .then(res => {
-            this.setState({ collection: res.data });
+            setCollection(res.data);
         })
         .catch(function (error) {
             console.log(error);
         })
-  }
+    },[]);
 }

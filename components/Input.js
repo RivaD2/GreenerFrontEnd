@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { StyleSheet, TextInput } from "react-native";
 import * as Icon from "@expo/vector-icons";
 
@@ -7,13 +7,11 @@ import Block from "./Block";
 import Button from "./Button";
 import { theme } from "../constants";
 
-export default class Input extends Component {
-  state = {
-    toggleSecure: false
-  };
+export default function Input(props){
 
-  renderLabel() {
-    const { label, error } = this.props;
+const [toggleSecure, setToggleSecure] = useState(false);
+  function renderLabel() {
+    const { label, error } = props;
 
     return (
       <Block flex={false}>
@@ -26,16 +24,15 @@ export default class Input extends Component {
     );
   }
 
-  renderToggle() {
-    const { secure, rightLabel } = this.props;
-    const { toggleSecure } = this.state;
+  function renderToggle() {
+    const { secure, rightLabel } = props;
 
     if (!secure) return null;
 
     return (
       <Button
         style={styles.toggle}
-        onPress={() => this.setState({ toggleSecure: !toggleSecure })}
+        onPress={() => setToggleSecure(!toggleSecure)}
       >
         {rightLabel ? (
           rightLabel
@@ -50,7 +47,7 @@ export default class Input extends Component {
     );
   }
 
-  renderRight() {
+  function renderRight() {
     const { rightLabel, rightStyle, onRightPress } = this.props;
 
     if (!rightLabel) return null;
@@ -65,10 +62,8 @@ export default class Input extends Component {
     );
   }
 
-  render() {
-    const { email, phone, number, secure, error, style, ...props } = this.props;
+    const { email, phone, number, secure, error, style } = props;
 
-    const { toggleSecure } = this.state;
     const isSecure = toggleSecure ? false : secure;
 
     const inputStyles = [
@@ -97,11 +92,10 @@ export default class Input extends Component {
           keyboardType={inputType}
           {...props}
         />
-        {this.renderToggle()}
-        {this.renderRight()}
+        {renderToggle()}
+        {renderRight()}
       </Block>
     );
-  }
 }
 
 const styles = StyleSheet.create({
