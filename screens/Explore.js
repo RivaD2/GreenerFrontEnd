@@ -8,8 +8,12 @@ import {
 } from "react-native";
 import Game from "../components/Game";
 
+import useGlobalState from '../useGlobalState.js';
+
+
 import { Card, Badge, Button, Block, Text, Divider } from "../components";
 import { theme, mocks } from "../constants";
+import { connect } from "react-redux";
 const BasicSvg = () =>{
   <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
     <circle
@@ -22,9 +26,16 @@ const BasicSvg = () =>{
   </svg>}
 
 const { width } = Dimensions.get("window");
+function MyHook({ children }){
+const [state, dispatch] = useGlobalState();
+return children({ state, dispatch })
+}
 
-export default class Explore extends React.Component {
-
+class Explore extends React.Component {
+    constructor(props){
+        super(props);
+        this.props = props;
+    }
     state = {
         plants1: [],
         plants2: [],
@@ -38,7 +49,7 @@ export default class Explore extends React.Component {
       }
 
     render(){
-        
+        // alert(JSON.stringify(this.props.state));
         const {profile, navigation} = this.props;
         const { plants1 } = this.state;
         const { plants2 } = this.state;
@@ -52,8 +63,15 @@ export default class Explore extends React.Component {
           }
 
         return (
-            <>
+            <MyHook>
+                {({ state, dispatch }) => {
             <If condition={category.name === 'Happy Terrarium'}>
+                    <Block>
+                        <Text>
+                            {JSON.stringify(state)}
+                            {JSON.stringify(dispatch)}
+                        </Text>
+                    </Block>
             
             <Block>
                 <Block flex={false} row center space="between" style={styles.header}>
@@ -226,12 +244,13 @@ export default class Explore extends React.Component {
             </Block>
             </If>
 
-
-            </>
+                    }}
+            </MyHook>
         );
     }
   
 }
+
 
 Explore.defaultProps = {
     profile: mocks.profile,

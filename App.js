@@ -6,6 +6,7 @@ import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import Navigation from './navigation/index';
 
+import { GlobalStateProvider } from './components/context.js';
 // context api: wrap everything in a provider
 // import all used images
 const images = [
@@ -70,9 +71,11 @@ export default class App extends React.Component {
     }
 
     return (
+      <GlobalStateProvider>
       <Block white>
       <Navigation />
     </Block>
+      </GlobalStateProvider>
     );
   }
 }
