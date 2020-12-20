@@ -55,36 +55,36 @@ class Login extends Component {
     this.props.updateUser(user.user);
     
     if(this.props.user.name === this.state.username){
-      // Alert.alert(
-      //   "Success!",
-      //   "You are logged in.",
+      Alert.alert(
+        "Success!",
+        "You are logged in.",
   
-      //   [
-      //     {
-      //       text: "Continue",
-      //       onPress: () => {
-      //         navigation.navigate("Collection");
-      //       }
-      //     }
-      //   ],
-      //   { cancelable: false }
-      // );
+        [
+          {
+            text: "Continue",
+            onPress: () => {
+              navigation.navigate("Collection");
+            }
+          }
+        ],
+        { cancelable: false }
+      );
     }
     else{
-      // Alert.alert(
-      //   "Failed!",
-      //   "User Credentials do not match",
+      Alert.alert(
+        "Failed!",
+        "User Credentials do not match",
   
-      //   [
-      //     {
-      //       text: "Try Again",
-      //       onPress: () => {
+        [
+          {
+            text: "Try Again",
+            onPress: () => {
               
-      //       }
-      //     }
-      //   ],
-      //   { cancelable: false }
-      // );
+            }
+          }
+        ],
+        { cancelable: false }
+      );
     }
         
 
@@ -119,7 +119,7 @@ class Login extends Component {
                 <ActivityIndicator size="small" color="white" />
               ) : (
                   <Text bold white center>
-                    Login{JSON.stringify(this.props.user)}
+                    Login
                   </Text>
                 )}
             </Button>

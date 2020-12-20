@@ -61,19 +61,19 @@ class SignUp extends Component {
           this.props.updateUser(json.results);
         })
         if(this.state.username === this.props.user.name){
-          // Alert.alert(
-          //   "Success!",
-          //   "Your account has been created",
-          //   [
-          //     {
-          //       text: "Continue",
-          //       onPress: () => {
-          //         navigation.navigate("Collection");
-          //       }
-          //     }
-          //   ],
-          //   { cancelable: false }
-          // )
+          Alert.alert(
+            "Success!",
+            "Your account has been created",
+            [
+              {
+                text: "Continue",
+                onPress: () => {
+                  navigation.navigate("Collection");
+                }
+              }
+            ],
+            { cancelable: false }
+          )
         }
 
     }
@@ -91,7 +91,6 @@ class SignUp extends Component {
             Sign Up
           </Text>
           <Text>
-            {JSON.stringify(this.props.user)}
           </Text>
           <Block middle>
             <Input
