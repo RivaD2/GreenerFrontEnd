@@ -128,9 +128,7 @@ export default class Login extends Component {
                 Forgot your password?
               </Text>
             </Button>
-            <Button gradient onPress={() => this.props.navigation.navigate('OAuth')}>
-              <Text center semibold white>Google Oauth</Text>
-            </Button>
+            <OAuth/>
             <Button gradient onPress={() => this.props.navigation.navigate('Collection')}>
               <Text center semibold white>BYPASS</Text>
             </Button>

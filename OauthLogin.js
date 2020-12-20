@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-//import React, { useEffect, useState } from 'react';
 import * as Google from 'expo-google-app-auth';
-import {Text, View, StyleSheet, Button } from 'react-native';
-import Login from './screens/Login';
+import { Button, Text } from "./components";
 
 const IOS_CLIENT_ID = '872509857984-nv75qdpnj41i8qjfeb5pplnncmnd6stv.apps.googleusercontent.com';
 const initialState = {
@@ -37,18 +35,10 @@ export default class LoginScreen extends Component {
 
   render() {
       return(
-          <View style={styles.container}>
-              <Button title="Login with Google" onPress={this.signInWithGoogle}/>
-          </View>
+          <Button onPress={this.signInWithGoogle}>
+               <Text center semibold>Login with Google</Text>
+          </Button>
       )
   }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        backgroundColor:'#fff',
-        alignItems: 'center',
-        justifyContent: 'center', 
-   }
-})
