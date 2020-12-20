@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from "react-native";
 import Game from "../components/Game";
-
+import Terrarium from '../components/Terriarum';
 import { Card, Badge, Button, Block, Text, Divider } from "../components";
 import { theme, mocks } from "../constants";
 const BasicSvg = () =>{
@@ -44,15 +44,12 @@ constructor(props){
       }
 
     render(){
-        
         const {profile, navigation} = this.props;
         const { plants1 } = this.state;
         const { plants2 } = this.state;
         const { shopPlants } = this.state;
         const category = navigation.getParam('category');
         const plant = navigation.getParam('plant') || 'plant';
-        
-
         const If = (props) => {
             return props.condition ? props.children : null;
           }
@@ -60,116 +57,13 @@ constructor(props){
         return (
             <>
             <If condition={category.name === 'Happy Terrarium'}>
-            <Block>
-                <Text>
-            {JSON.stringify(this.props.user)}
-
-                </Text>
-            </Block>
-            <Block>
-                <Block flex={false} row center space="between" style={styles.header}>
-                    <Text h1 bold>
-                    {category.name}
-                    </Text>
-                    <Button onPress={() => navigation.navigate("Settings")}>
-                        <Image source={profile.avatar} style={styles.avatar} />
-                    </Button>
-                </Block>
-                <Block center middle>
-                    
-                    <Text>{plant.name}</Text>
-                    <Image source={plant.image} />
-                    <Text>{plant.status}</Text>    
-                </Block>
-                
-                <ScrollView
-                showsVerticalScrollIndicator={false}
-                style={{ paddingVertical: theme.sizes.base * 2 }}
-                >
-                    <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
-                    <Block flex={false} row space="between" style={styles.categories}>
-                    {plants1.map(plant=> (
-                        <TouchableOpacity
-                        key={plant.name}
-                        onPress={() => navigation.navigate("Explore", { plant })}
-                        >
-                            <Card center middle shadow style={styles.category}>
-                            <Badge
-                            margin={[0, 0, 15]}
-                            size={50}
-                            color="rgba(41,216,143,0.20)"
-                            >
-                            <Image source={plant.image} />
-                            </Badge>
-                            <Text medium height={20}>
-                            {plant.name}
-                            </Text>
-                            <Text gray caption>
-                            {plant.description} 
-                            </Text>
-                            </Card>
-                        </TouchableOpacity>
-                        ))}
-                    </Block>
-                </ScrollView>
-
-            </Block>
+                {/* Terrarium component is dropped in here to reduce Explorer
+                file complexity */}
+                <Terrarium name={category.name} profile={profile} plants={plants1} styles={styles}/>
             </If>
-
-
             {/* If lucky terrarium */}
-            
-            
-            
             <If condition={category.name === 'Lucky Terrarium'}>
-            <Block>
-                <Block flex={false} row center space="between" style={styles.header}>
-                    <Text h1 bold>
-                    {category.name}
-                    </Text>
-                    <Button onPress={() => navigation.navigate("Settings")}>
-                        <Image source={profile.avatar} style={styles.avatar} />
-                    </Button>
-                </Block>
-                <Block center middle>
-                    
-                    <Text>{plant.name}</Text>
-                    <Image source={plant.image} />
-                    <Text>{plant.status}</Text>    
-                    
-                </Block>
-                <ScrollView
-                showsVerticalScrollIndicator={false}
-                style={{ paddingVertical: theme.sizes.base * 2 }}
-                >
-                    <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
-                    <Block flex={false} row space="between" style={styles.categories}>
-                    {plants2.map(plant=> (
-                        <TouchableOpacity
-                        key={plant.name}
-                        onPress={() => navigation.navigate("Explore", { plant })}
-                        >
-                            <Card center middle shadow style={styles.category}>
-                            <Badge
-                            margin={[0, 0, 15]}
-                            size={50}
-                            color="rgba(41,216,143,0.20)"
-                            >
-                            <Image source={plant.image} />
-                            </Badge>
-                            <Text medium height={20}>
-                            {plant.name}
-                            </Text>
-                            <Text gray caption>
-                            {plant.description} 
-                            </Text>
-                            </Card>
-                        </TouchableOpacity>
-                        ))}
-                    </Block>
-                </ScrollView>
-
-            </Block>
+              <Terrarium name={category.name} profile={profile} plants={plants2} styles={styles}/>
             </If>
 
             {/* Store */}
@@ -184,22 +78,16 @@ constructor(props){
                         <Image source={profile.avatar} style={styles.avatar} />
                     </Button>
                 </Block>
-                
-
                 <ScrollView
                 showsVerticalScrollIndicator={false}
                 style={{ paddingVertical: theme.sizes.base * 2 }}
                 >
-
                 <Block center middle>
-                    
                     <Text>{plant.name}</Text>
                     <Image source={plant.image} />
                     <Text>{plant.price}</Text>   
                 </Block>
-
                 <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
-                
                     <Block flex={false} row space="between" style={styles.categories}>
                     {shopPlants.map(plant=> (
                         <TouchableOpacity
@@ -264,6 +152,11 @@ const styles = StyleSheet.create({
     header: {
       paddingHorizontal: theme.sizes.base * 2
     },
+    actionButtons: {
+        paddingBottom: theme.sizes.base / 4,
+        paddingTop: theme.sizes.base,
+        paddingHorizontal: theme.sizes.base * 2
+      },
     avatar: {
       height: theme.sizes.base * 3.2,
       width: theme.sizes.base * 3.2,
@@ -280,5 +173,4 @@ const styles = StyleSheet.create({
         maxWidth: (width - theme.sizes.padding * 2.4 - theme.sizes.base) / 2,
         maxHeight: (width - theme.sizes.padding * 2.4 - theme.sizes.base) / 2
     }
-
   });
