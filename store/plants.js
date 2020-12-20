@@ -1,5 +1,5 @@
 const initialState = {
-    user: {}
+    plants1: [],
 }
 
 export const selectUser = (stuff) => {
@@ -9,7 +9,14 @@ export const selectUser = (stuff) => {
     }
 }
 
-export const updateUser = (stuff) => {
+export const setPlants = (stuff) => {
+    return {
+        type: "Set",
+        payload: stuff
+    }
+}
+
+export const updatePlants = (stuff) => {
     return {
         type: "Update",
         payload: stuff
@@ -17,13 +24,15 @@ export const updateUser = (stuff) => {
 }
 
 // What should be done to our initial state?
-const userReducer = (state = initialState, action) => {
+const plantReducer = (state = initialState, action) => {
     let { payload, type } = action;
     switch (type) {
         case 'Get':
             return state;
-        case 'Update':
-            return {user: payload}
+        case 'Set':
+            return payload;
+            case 'Update':
+                return [...state, payload]
         default:
             return state;
     }
@@ -31,4 +40,4 @@ const userReducer = (state = initialState, action) => {
     // this returns the new state.
 }
 
-export default userReducer;
+export default plantReducer;

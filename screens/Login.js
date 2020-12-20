@@ -100,6 +100,7 @@ class Login extends Component {
         <Block padding={[0, theme.sizes.base * 2]}>
           <Text h1 bold>
             Login... If we even need this page
+            {JSON.stringify(this.props.user)}{this.state.username}
           </Text>
           <Block middle>
           <Input
@@ -143,12 +144,11 @@ class Login extends Component {
   }
 }
 const mapStateToProps = (state) => ( {
-  user: state.user,
+  user: state.user.user,
 })
 
 const mapDispatchToProps = ({
   updateUser,
-  signUserIn
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 

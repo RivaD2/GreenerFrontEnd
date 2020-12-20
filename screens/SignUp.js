@@ -11,6 +11,8 @@ import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 import { connect } from 'react-redux';
 import { updateUser } from '../store/user.js';
+import { setDefaultUserData } from '../Axios.js';
+import { signUserUp } from '../Axios.js';
 class SignUp extends Component {
   state = {
     email: null,
@@ -20,7 +22,11 @@ class SignUp extends Component {
     loading: false
   };
 
-  handleSignUp() {
+  componentDidUpdate(){
+    
+  }
+
+  async handleSignUp() {
     const { navigation } = this.props;
     const { username, password } = this.state;
     const errors = [];
@@ -36,34 +42,21 @@ class SignUp extends Component {
 
     if (!errors.length) {
       /// Pushing new USER to API
-      
+      let addedUser = await signUserUp({"name": this.state.username, "password": this.state.password})
 
-      fetch('https://reactnative-server-2020.herokuapp.com/api/v1/user/signUp', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          
-          name: username,
-          password: password,
-          role: "user",
-          currency: 0
 
-        }),
-        
-      })
-        .then((response) => response.json())
-        .then((json) => {
+ 
           console.log('Sent Json', json);
-          delete json.password;
-          this.props.updateUser(json);
-        })
-        if(this.props.username === this.props.user.name){
+          delete json.results.password;
+          delete json.results.role;
+          this.setState({...this.state, user: addedUser})
+          this.props.updateUser(addedUser);
+        
+        if(this.state.username === this.props.user.name){
+          // setDefaultUserData(this.props.user._id);
           Alert.alert(
             "Success!",
-            "Your account has been created",
+            `${this.props.user._id} account has been created`,
             [
               {
                 text: "Continue",
@@ -75,8 +68,7 @@ class SignUp extends Component {
             { cancelable: false }
           )
         }
-
-    }
+      }
   }
 
   render() {
@@ -91,7 +83,13 @@ class SignUp extends Component {
             Sign Up
           </Text>
           <Text>
+            {/* {this.state.username} */}
+            {/* {this.state.password} */}
+            i am the redux user
             {JSON.stringify(this.props.user)}
+            ------------------
+            i am the state user
+            {JSON.stringify(this.state.user)}
           </Text>
           <Block middle>
             <Input
@@ -109,7 +107,7 @@ class SignUp extends Component {
               defaultValue={this.state.password}
               onChangeText={text => this.setState({ password: text })}
             />
-            <Button gradient onPress={() => this.handleSignUp()}>
+            <Button gradient onPress={async() => await this.handleSignUp()}>
               {loading ? (
                 <ActivityIndicator size="small" color="white" />
               ) : (

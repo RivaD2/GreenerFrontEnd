@@ -60,6 +60,9 @@ class Browse extends Component {
           <Text h1 bold>
             My Garden
           </Text>
+          <Text>
+            {JSON.stringify(this.props.user)}
+          </Text>
           <Button onPress={() => navigation.navigate("Settings")}>
             <Image source={profile.avatar} style={styles.avatar} />
           </Button>

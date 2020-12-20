@@ -25,9 +25,10 @@ export default class Users extends Component {
             console.log(error);
         })
   }
-}
-render(){
-    return(
-        
+  render(){
+      return(
+          <>
+        </>
     )
+}
 }
