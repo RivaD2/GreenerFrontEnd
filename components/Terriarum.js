@@ -53,7 +53,9 @@ export default class Terrarium extends React.Component {
                 </Block>
                 <Block flex={false} row center space="between" style={styles.actionButtons}>
                     {this.buttons.map(button => (
-                        <Button key={button.id} gradient={button === this.state.selectedButton} onPress={() =>{
+                        <Button key={button.id} style={{
+                            width: 100
+                        }}gradient={button === this.state.selectedButton} onPress={() =>{
                             this.onButtonPress(button)
                         }}>
                             <Text bold center>
