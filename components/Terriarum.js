@@ -32,10 +32,21 @@ export default class Terrarium extends React.Component {
         }]
     }
     onButtonPress(button) {
-        // make it so when button is clicked, button is set in state
+        // Make it so when button is clicked, button is set in state
         // I am setting button to state so I can dynamically render the tips
         this.setState({
             selectedButton: button
+        })
+    }
+    onPlantSelect(plant) {
+        // If no button is selected, do nothing
+        if(this.state.selectedButton === undefined) {
+            return
+        }
+        // TODO: call backend with plant AND action
+        console.log(`performing action ${this.state.selectedButton.id} on plant ${plant.id}` )
+        this.setState({
+            selectedButton: undefined
         })
     }
     render() {
@@ -79,7 +90,7 @@ export default class Terrarium extends React.Component {
                     {plants.map(plant => (
                         <TouchableOpacity
                         key={plant.name}
-                        onPress={() => navigation.navigate("Explore", {plant})}
+                        onPress={() => {this.onPlantSelect(plant)}}
                         >
                             <Card center middle shadow style={styles.category}>
                             <Badge
