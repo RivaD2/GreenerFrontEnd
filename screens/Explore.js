@@ -152,6 +152,11 @@ const styles = StyleSheet.create({
     header: {
       paddingHorizontal: theme.sizes.base * 2
     },
+    actionButtons: {
+        paddingBottom: theme.sizes.base / 4,
+        paddingTop: theme.sizes.base,
+        paddingHorizontal: theme.sizes.base * 2
+      },
     avatar: {
       height: theme.sizes.base * 3.2,
       width: theme.sizes.base * 3.2,
@@ -168,5 +173,4 @@ const styles = StyleSheet.create({
         maxWidth: (width - theme.sizes.padding * 2.4 - theme.sizes.base) / 2,
         maxHeight: (width - theme.sizes.padding * 2.4 - theme.sizes.base) / 2
     }
-
   });
