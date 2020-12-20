@@ -43,7 +43,7 @@ constructor(props){
       }
 
     render(){
-        const {profile, navigation} = this.props;
+        const {profile, user, navigation} = this.props;
         const { plants1 } = this.state;
         const { plants2 } = this.state;
         const { shopPlants } = this.state;
@@ -58,7 +58,7 @@ constructor(props){
             <If condition={category.name === 'Happy Terrarium'}>
                 {/* Terrarium component is dropped in here to reduce Explorer
                 file complexity */}
-                <Terrarium name={category.name} profile={profile} plants={plants1} styles={styles}/>
+                <Terrarium name={category.name} plants={plants1} {...{profile, user, styles}} />
             </If>
             {/* If lucky terrarium */}
             <If condition={category.name === 'Lucky Terrarium'}>

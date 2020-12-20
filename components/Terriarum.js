@@ -5,6 +5,7 @@ import {
     TouchableOpacity
   } from "react-native";
 import {Card, Badge, Button, Block, Text, Divider} from "../components";
+import {updateUser} from '../Axios'
 import {theme} from "../constants";
 // Notes: Step 1: Make an arr of buttons to iterate over
          // Step2: Disable buttons that aren't pressed through each iteration
@@ -43,8 +44,11 @@ export default class Terrarium extends React.Component {
         if(this.state.selectedButton === undefined) {
             return
         }
-        // TODO: call backend with plant AND action
-        console.log(`performing action ${this.state.selectedButton.id} on plant ${plant.id}` )
+        const {user} = this.props;
+        user.currency++
+        updateUser(user._id, {
+            currency: user.currency
+        })
         this.setState({
             selectedButton: undefined
         })
