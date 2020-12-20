@@ -58,9 +58,9 @@ class SignUp extends Component {
         .then((json) => {
           console.log('Sent Json', json);
           delete json.password;
-          this.props.updateUser(json);
+          this.props.updateUser(json.results);
         })
-        if(this.props.username === this.props.user.name){
+        if(this.state.username === this.props.user.name){
           Alert.alert(
             "Success!",
             "Your account has been created",
@@ -91,7 +91,6 @@ class SignUp extends Component {
             Sign Up
           </Text>
           <Text>
-            {JSON.stringify(this.props.user)}
           </Text>
           <Block middle>
             <Input
@@ -136,7 +135,7 @@ class SignUp extends Component {
   }
 }
 const mapStateToProps = (state) => ( {
-  user: state.user,
+  user: state.user.user,
 })
 
 const mapDispatchToProps = ({

@@ -140,12 +140,11 @@ class Login extends Component {
   }
 }
 const mapStateToProps = (state) => ( {
-  user: state.user,
+  user: state.user.user,
 })
 
 const mapDispatchToProps = ({
   updateUser,
-  signUserIn
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
 

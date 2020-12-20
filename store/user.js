@@ -23,7 +23,7 @@ const categoryReducer = (state = initialState, action) => {
         case 'Get':
             return state;
         case 'Update':
-            return payload;
+            return {user: payload};
         default:
             return state;
     }
