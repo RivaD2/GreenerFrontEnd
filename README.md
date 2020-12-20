@@ -52,5 +52,9 @@ Robert Rizo: A front End Dev that loves the presentation layer of apps. Check ou
 
   - Jeff Terrell at: [tutorial](https://gitlab.com/unc-app-lab/react-native-tutorial-tic-tac-toe/-/blob/master/App.js)
 
+
+###### Plant UI tutorial from: 
+
+[Krissanawat Kaewsanmuang](https://kriss.io/react-native-plant-app-ui-2-implementing-custom-components/#.X9_A5WRKhb9)
   
  
