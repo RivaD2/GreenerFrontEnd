@@ -28,6 +28,12 @@ export default class Terrarium extends React.Component {
             name: "Sunlight"
         }]
     }
+    onButtonPress(button) {
+        // make it so when button is clicked, button is set in state
+        this.setState({
+            selectedButton: button.id
+        })
+    }
     render() {
         // deconstructing props so I don't have to use this.props a trillion times
         const {styles, name, plants, profile} = this.props;
@@ -43,8 +49,8 @@ export default class Terrarium extends React.Component {
                 </Block>
                 <Block flex={true} row center space="between" style={styles.header}>
                     {this.buttons.map(button => (
-                        <Button key={button.id} gradient={false} onPress={() =>{
-                            
+                        <Button key={button.id} gradient={button.id === this.state.selectedButton} onPress={() =>{
+                            this.onButtonPress(button)
                         }}>
                             <Text bold center>
                               {button.name} 
