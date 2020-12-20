@@ -168,7 +168,7 @@ export default class Welcome extends React.Component {
         </Block>
         <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
           <Button gradient onPress={() => this.props.navigation.navigate('Login')}>
-            <Text center semibold white>Welcome</Text>
+            <Text center semibold white>Login</Text>
           </Button>
           <Button shadow onPress={() => this.props.navigation.navigate('SignUp')}>
             <Text center semibold>Signup</Text>

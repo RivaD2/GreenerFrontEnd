@@ -1,15 +1,6 @@
 import React, {Component} from "react";
 import * as Google from 'expo-google-app-auth';
-<<<<<<< HEAD
-import {Text, View, StyleSheet, Button } from 'react-native';
-import Login from './screens/Login';
-import { getUserData } from './Axios.js';
-import { signUserUp } from './Axios.js';
-import { signUserIn } from './Axios.js';
-
-=======
 import { Button, Text } from "./components";
->>>>>>> e85246db102e0a9e689989951397f15527b0ec86
 
 const IOS_CLIENT_ID = '872509857984-nv75qdpnj41i8qjfeb5pplnncmnd6stv.apps.googleusercontent.com';
 const initialState = {
@@ -18,14 +9,8 @@ const initialState = {
   errors: {},
   isAuthorized: false,
 };
-import { connect } from 'react-redux';
-import { updateUser } from './store/user.js';
 
-class LoginScreen extends Component {
-    constructor(props){
-        super(props);
-        this.props = props;
-    }
+export default class LoginScreen extends Component {
   state = initialState;
   signInWithGoogle = async () => {
       try {
@@ -34,19 +19,6 @@ class LoginScreen extends Component {
               success: ['profile', 'email']
           })
           if(result.type === 'success') {
-            const userRequest = await getUserData(result.user.givenName);
-            const userResult = await userRequest.json();
-            // this.props
-            if(!userResult){
-                let user = await signUserUp({"name": result.user.givenName, "password": "@Test123", currency: 0 })
-                let userBody = await user.json();
-                delete userBody.results.password;
-                this.props.updateUser(userBody.results)
-            }else if (userResult){
-                delete userResult.password
-                this.props.updateUser(userResult);
-            }
-
               console.log('LoginScreen.js', result.user.givenName);
               this.props.navigation.navigate('Collection', {
                   username: result.user.givenName
@@ -64,35 +36,9 @@ class LoginScreen extends Component {
 
   render() {
       return(
-<<<<<<< HEAD
-          <View style={styles.container}>
-              <Button title="Login with Google" onPress={this.signInWithGoogle}/>
-              {/* <Text>
-                  {JSON.stringify(this.props.user)}
-              </Text> */}
-          </View>
-=======
           <Button onPress={this.signInWithGoogle}>
                <Text center semibold>Login with Google</Text>
           </Button>
->>>>>>> e85246db102e0a9e689989951397f15527b0ec86
       )
   }
 }
-const mapStateToProps = (state) => ( {
-    user: state.user,
-  })
-  
-  const mapDispatchToProps = ({
-    updateUser,
-  })
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
-const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        backgroundColor:'#fff',
-        alignItems: 'center',
-        justifyContent: 'center', 
-   }
-})
