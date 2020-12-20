@@ -1,12 +1,15 @@
 import React, {Component} from "react";
-//import React, { useEffect, useState } from 'react';
 import * as Google from 'expo-google-app-auth';
+<<<<<<< HEAD
 import {Text, View, StyleSheet, Button } from 'react-native';
 import Login from './screens/Login';
 import { getUserData } from './Axios.js';
 import { signUserUp } from './Axios.js';
 import { signUserIn } from './Axios.js';
 
+=======
+import { Button, Text } from "./components";
+>>>>>>> e85246db102e0a9e689989951397f15527b0ec86
 
 const IOS_CLIENT_ID = '872509857984-nv75qdpnj41i8qjfeb5pplnncmnd6stv.apps.googleusercontent.com';
 const initialState = {
@@ -61,12 +64,18 @@ class LoginScreen extends Component {
 
   render() {
       return(
+<<<<<<< HEAD
           <View style={styles.container}>
               <Button title="Login with Google" onPress={this.signInWithGoogle}/>
               {/* <Text>
                   {JSON.stringify(this.props.user)}
               </Text> */}
           </View>
+=======
+          <Button onPress={this.signInWithGoogle}>
+               <Text center semibold>Login with Google</Text>
+          </Button>
+>>>>>>> e85246db102e0a9e689989951397f15527b0ec86
       )
   }
 }
