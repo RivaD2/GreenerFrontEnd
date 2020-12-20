@@ -9,8 +9,9 @@ import {
 
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
-
-export default class SignUp extends Component {
+import { connect } from 'react-redux';
+import { updateUser } from '../store/user.js';
+class SignUp extends Component {
   state = {
     email: null,
     username: null,
@@ -37,7 +38,7 @@ export default class SignUp extends Component {
       /// Pushing new USER to API
       
 
-      fetch('http://localhost:3001/api/v1/user/signUp', {
+      fetch('https://reactnative-server-2020.herokuapp.com/api/v1/user/signUp', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -48,7 +49,7 @@ export default class SignUp extends Component {
           name: username,
           password: password,
           role: "user",
-          currency: 50
+          currency: 0
 
         }),
         
@@ -56,24 +57,25 @@ export default class SignUp extends Component {
         .then((response) => response.json())
         .then((json) => {
           console.log('Sent Json', json);
-          this.setState({
-            json: json
-          });
+          delete json.password;
+          this.props.updateUser(json);
         })
-        //
-      Alert.alert(
-        "Success!",
-        "Your account has been created",
-        [
-          {
-            text: "Continue",
-            onPress: () => {
-              navigation.navigate("Collection");
-            }
-          }
-        ],
-        { cancelable: false }
-      );
+        if(this.props.username === this.props.user.name){
+          Alert.alert(
+            "Success!",
+            "Your account has been created",
+            [
+              {
+                text: "Continue",
+                onPress: () => {
+                  navigation.navigate("Collection");
+                }
+              }
+            ],
+            { cancelable: false }
+          )
+        }
+
     }
   }
 
@@ -87,6 +89,9 @@ export default class SignUp extends Component {
         <Block padding={[0, theme.sizes.base * 2]}>
           <Text h1 bold>
             Sign Up
+          </Text>
+          <Text>
+            {JSON.stringify(this.props.user)}
           </Text>
           <Block middle>
             <Input
@@ -130,6 +135,14 @@ export default class SignUp extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ( {
+  user: state.user,
+})
+
+const mapDispatchToProps = ({
+  updateUser
+})
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
 
 const styles = StyleSheet.create({
   signup: {

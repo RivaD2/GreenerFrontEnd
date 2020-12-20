@@ -37,7 +37,6 @@ constructor(props){
       };
 
       componentDidMount() {
-          this.props.updateUser({"name": 'Bryant'})
         this.setState({ plants1: this.props.plants1 });
         this.setState({ plants2: this.props.plants2});
         this.setState({ shopPlants: this.props.shopPlants});
@@ -60,12 +59,6 @@ constructor(props){
         return (
             <>
             <If condition={category.name === 'Happy Terrarium'}>
-            <Block>
-                <Text>
-            {JSON.stringify(this.props.user)}
-
-                </Text>
-            </Block>
             <Block>
                 <Block flex={false} row center space="between" style={styles.header}>
                     <Text h1 bold>

@@ -9,7 +9,7 @@ import {
 
 import { Card, Badge, Button, Block, Text } from "../components";
 import { theme, mocks } from "../constants";
-
+import { connect } from 'react-redux';
 const { width } = Dimensions.get("window");
 
 class Browse extends Component {
@@ -102,13 +102,18 @@ class Browse extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ( {
+  user: state.user,
+})
 
+const mapDispatchToProps = ({
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Browse);
 Browse.defaultProps = {
   profile: mocks.profile,
   categories: mocks.categories
 };
 
-export default Browse;
 
 const styles = StyleSheet.create({
   header: {

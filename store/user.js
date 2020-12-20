@@ -1,34 +1,34 @@
 const initialState = {
     user: {}
-  }
-  
-  export const selectUser = (stuff) => {
+}
+
+export const selectUser = (stuff) => {
     return {
-      type: 'Get',
-      payload: stuff
+        type: 'Get',
+        payload: stuff
     }
-  }
-  export const updateUser = (stuff) => {
-      return {
-          type: "Update",
-          payload: stuff
-      }
-  }
-  
-  
-  // What should be done to our initial state?
-  const categoryReducer = (state = initialState, action) => {
+}
+
+export const updateUser = (stuff) => {
+    return {
+        type: "Update",
+        payload: stuff
+    }
+}
+
+// What should be done to our initial state?
+const categoryReducer = (state = initialState, action) => {
     let { payload, type } = action;
-    switch(type){
-      case 'User':
-       return state;
-       case 'Update':
-           return payload
-       default:
-         return state;
+    switch (type) {
+        case 'Get':
+            return state;
+        case 'Update':
+            return payload;
+        default:
+            return state;
     }
-  
+
     // this returns the new state.
-  }
-  
-  export default categoryReducer;
+}
+
+export default categoryReducer;
