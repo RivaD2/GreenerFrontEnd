@@ -37,7 +37,6 @@ constructor(props){
       };
 
       componentDidMount() {
-          this.props.updateUser({"name": 'Bryant'})
         this.setState({ plants1: this.props.plants1 });
         this.setState({ plants2: this.props.plants2});
         this.setState({ shopPlants: this.props.shopPlants});

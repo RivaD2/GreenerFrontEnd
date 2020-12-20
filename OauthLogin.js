@@ -9,6 +9,7 @@ const initialState = {
   errors: {},
   isAuthorized: false,
 };
+
 export default class LoginScreen extends Component {
   state = initialState;
   signInWithGoogle = async () => {
@@ -41,4 +42,3 @@ export default class LoginScreen extends Component {
       )
   }
 }
-

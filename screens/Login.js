@@ -11,64 +11,50 @@ import {
 import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 import OAuth from '../OauthLogin.js';
-
-const VALID_USERNAME = "Al";
-const VALID_PASSWORD = "123456";
+import base64 from 'base-64';
+import { signUserIn } from '../Axios.js';
+// const VALID_USERNAME = "";
+// const VALID_PASSWORD = "";
 let currency = 5;
 
-export default class Login extends Component {
+import { connect } from 'react-redux';
+import { updateUser } from '../store/user.js';
+
+class Login extends Component {
+  constructor(props){
+    super(props);
+    this.props = props;
+    this.handleLogin.bind(this);
+  }
   state = {
-    username: VALID_USERNAME,
-    password: VALID_PASSWORD,
+    username: '',
+    password: '',
     errors: [],
-    loading: false
+    loading: false,
   };
 
-  handleLogin() {
+  async handleLogin(){
     const { navigation } = this.props;
     const { username, password } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
-    this.setState({ loading: true });
+    this.setState({ ...this.state, loading: true });
 
     // check with backend API or with some static data
-    if (username !== VALID_USERNAME) {
-      errors.push("username");
-    }
-    if (password !== VALID_PASSWORD) {
-      errors.push("password");
-    }
+    // if (username !== VALID_USERNAME) {
+    //   errors.push("username");
+    // }
+    // if (password !== VALID_PASSWORD) {
+    //   errors.push("password");
+    // }
 
-    this.setState({ errors, loading: false });
-
-    if (!errors.length) {
-      /// Pushing new USER to API
-      
-
-      fetch('http://localhost:3001/api/v1/user/signIn', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          
-          name: "Al",
-          password: "123456",
-
-        }),
-        
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log('Sent Json', json);
-          this.setState({
-            json: json
-          });
-        })
-        //
-        
+    this.setState({ ...this.state, loading: false });
+    let encodedString = base64.encode(`${this.state.username}:${this.state.password}`)
+    const user = await signUserIn(encodedString);
+    this.props.updateUser(user.user);
+    
+    if(this.props.user.name === this.state.username){
       Alert.alert(
         "Success!",
         "You are logged in.",
@@ -84,6 +70,24 @@ export default class Login extends Component {
         { cancelable: false }
       );
     }
+    else{
+      Alert.alert(
+        "Failed!",
+        "User Credentials do not match",
+  
+        [
+          {
+            text: "Try Again",
+            onPress: () => {
+              
+            }
+          }
+        ],
+        { cancelable: false }
+      );
+    }
+        
+
   }
 
   render() {
@@ -102,7 +106,7 @@ export default class Login extends Component {
               label="Username"
               error={hasErrors("username")}
               style={[styles.input, hasErrors("username")]}
-              defaultValue={this.state.username}
+              value={this.state.username}
               onChangeText={text => this.setState({ username: text })}
             />
             <Input
@@ -110,7 +114,7 @@ export default class Login extends Component {
               label="Password"
               error={hasErrors("password")}
               style={[styles.input, hasErrors("password")]}
-              defaultValue={this.state.password}
+              value={this.state.password}
               onChangeText={text => this.setState({ password: text })}
             />
             <Button gradient onPress={() => this.handleLogin()}>
@@ -138,6 +142,15 @@ export default class Login extends Component {
     );
   }
 }
+const mapStateToProps = (state) => ( {
+  user: state.user,
+})
+
+const mapDispatchToProps = ({
+  updateUser,
+  signUserIn
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 const styles = StyleSheet.create({
   login: {
