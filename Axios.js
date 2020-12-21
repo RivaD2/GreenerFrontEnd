@@ -18,7 +18,7 @@ export const getUserData = async (username) => {
         'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
       }
     }
-    const server = 'http://reactnative-server-2020.herokuapp.com/api/v1/user';
+    const server = "https://reactnative-server-2020.herokuapp.com/api/v1/user/stuff/all";
     const user = await fetch(server, requestOptions);
     let json = await user.json();
     return json;
@@ -103,10 +103,16 @@ export const addTerrariumToUser = async (user, terrarium) => {
 
 export const signUserUp = async (userObj) => {
   try {
-    const user = await instance.post('http://reactnative-server-2020.herokuapp.com/api/v1/user/signUp', {
-      userObj,
-    });
-    return user.data;
+    let user = await fetch('https://reactnative-server-2020.herokuapp.com/api/v1/user/signUp', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userObj),
+      
+    })
+    return await user.json();
   } catch (err) {
     console.error(err);
   }
