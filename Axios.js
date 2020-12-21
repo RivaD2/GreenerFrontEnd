@@ -49,6 +49,27 @@ export const signUserIn = async (userObj) => {
   }
 };
 
+export const signInOauthUser = async (accessToken) => {
+  try {
+    const requestOptions = {
+      mode: 'cors',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        token: accessToken
+      })
+    }
+    const server = 'https://reactnative-server-2020.herokuapp.com/api/v1/user/authenticate';
+    const response = await fetch(server, requestOptions);
+    const json = await response.json();
+    return json;
+  }
+  catch (err) {
+    console.error(err);
+  }
+};
 export const updateUser = async (userId,userObj) => {
   try {
     const requestOptions = {
