@@ -63,14 +63,11 @@ class Terrarium extends React.Component {
         const {styles, name, plants, profile} = this.props;
         return (
             <Block>
-                <Text>
-                    {this.props.currency}
-                </Text>
                 <Block flex={false} row center space="between" style={styles.header}>
                     <Text h1 bold>
                       {name}
                     </Text>
-                    <Button onPress={() => navigation.navigate("Settings")}>
+                    <Button onPress={() => this.props.navigation.navigate("Settings")}>
                         <Image source={profile.avatar} style={styles.avatar} />
                     </Button>
                 </Block>

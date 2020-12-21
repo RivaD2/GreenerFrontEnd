@@ -58,11 +58,14 @@ constructor(props){
             <If condition={category.name === 'Happy Terrarium'}>
                 {/* Terrarium component is dropped in here to reduce Explorer
                 file complexity */}
-                <Terrarium name={category.name} plants={plants1} {...{profile, user, styles}} />
+                <Text>
+                    {/* {JSON.stringify(this.props)} */}
+                </Text>
+                <Terrarium navigation={this.props.navigation} name={category.name} plants={plants1} {...{profile, user, styles}} />
             </If>
             {/* If lucky terrarium */}
             <If condition={category.name === 'Lucky Terrarium'}>
-              <Terrarium updateUser ={this.props.updateUser} user={this.props.user} navigation={this.props.navigation} name={category.name} plants={plants2} {...{profile, user, styles}}/>
+              <Terrarium navigation={this.props.navigation} name={category.name} plants={plants2} {...{profile, user, styles}}/>
             </If>
 
             {/* Store */}
