@@ -11,6 +11,10 @@ const initialState = {
 };
 
 export default class LoginScreen extends Component {
+    constructor(props) {
+        super(props)
+        this.props = props
+    }
   state = initialState;
   signInWithGoogle = async () => {
       try {
@@ -20,9 +24,7 @@ export default class LoginScreen extends Component {
           })
           if(result.type === 'success') {
               console.log('LoginScreen.js', result.user.givenName);
-              this.props.navigation.navigate('Collection', {
-                  username: result.user.givenName
-              })
+              this.props.navigation.navigate('Collection')
               console.log('accessToken', result.accessToken)
               return result.accessToken;
           } else {

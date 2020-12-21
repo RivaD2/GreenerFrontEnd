@@ -129,7 +129,7 @@ class Login extends Component {
                 Forgot your password?
               </Text>
             </Button>
-            <OAuth/>
+            <OAuth navigation={this.props.navigation}/>
             <Button gradient onPress={() => this.props.navigation.navigate('Collection')}>
               <Text center semibold white>BYPASS</Text>
             </Button>
