@@ -5,12 +5,15 @@ import {
     TouchableOpacity
   } from "react-native";
 import {Card, Badge, Button, Block, Text, Divider} from "../components";
-import {updateUser} from '../Axios'
+import {updateUserDB} from '../Axios'
 import {theme} from "../constants";
 // Notes: Step 1: Make an arr of buttons to iterate over
          // Step2: Disable buttons that aren't pressed through each iteration
         // Step 3: Track if specific button is currently selected using a state value
-export default class Terrarium extends React.Component {
+
+import { connect } from 'react-redux';
+import { updateUser } from '../store/user.js';
+class Terrarium extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -32,22 +35,24 @@ export default class Terrarium extends React.Component {
             tip: 'give it some sun'
         }]
     }
-    onButtonPress(button) {
+    onButtonPress = (button) => {
         // Make it so when button is clicked, button is set in state
         // I am setting button to state so I can dynamically render the tips
         this.setState({
             selectedButton: button
         })
     }
-    onPlantSelect(plant) {
+    onPlantSelect = (plant) => {
         // If no button is selected, do nothing
         if(this.state.selectedButton === undefined) {
             return
         }
         const {user} = this.props;
         user.currency++
-        updateUser(user._id, {
+        updateUserDB(user._id, {
             currency: user.currency
+        }).then(updatedUser => {
+            this.props.updateUser(updatedUser);
         })
         this.setState({
             selectedButton: undefined
@@ -62,7 +67,7 @@ export default class Terrarium extends React.Component {
                     <Text h1 bold>
                       {name}
                     </Text>
-                    <Button onPress={() => navigation.navigate("Settings")}>
+                    <Button onPress={() => this.props.navigation.navigate("Settings")}>
                         <Image source={profile.avatar} style={styles.avatar} />
                     </Button>
                 </Block>
@@ -119,3 +124,12 @@ export default class Terrarium extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ( {
+    user: state.user.user,
+  })
+  
+  const mapDispatchToProps = ({
+      updateUser
+  })
+  export default connect(mapStateToProps, mapDispatchToProps)(Terrarium);

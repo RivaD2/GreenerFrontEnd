@@ -5,7 +5,14 @@ import Slider from "react-native-slider";
 import { Divider, Button, Block, Text, Switch } from "../components";
 import { theme, mocks } from "../constants";
 
+import { connect } from 'react-redux';
+
 class Settings extends Component {
+constructor(props){
+    super(props);
+    this.props = props;
+}
+
     state = {
         budget: 850,
         monthly: 1700,
@@ -67,13 +74,13 @@ class Settings extends Component {
                                 <Text gray2 style={{ marginBottom: 10 }}>
                                     Username
                 </Text>
-                                {this.renderEdit("username")}
+                <Text bold>{this.props.user.name}</Text>
                             </Block>
                             <Text
                                 medium
                                 secondary
                                 onPress={() => this.toggleEdit("username")}
-                            >
+                            >   
                                 {editing === "username" ? "Save" : "Edit"}
                             </Text>
                         </Block>
@@ -108,12 +115,12 @@ class Settings extends Component {
                         <Block>
 
                             <Text gray2>Plants</Text>
-                            <Text caption gray2 right>{profile.plants}</Text>
+                            <Text bold>{this.props.plants.length}</Text>
 
                         </Block>
                         <Block>
                             <Text gray2 style={{ marginBottom: 10 }}>Plant Cash</Text>
-                            <Text bold>${profile.funds}</Text>
+                            <Text bold>${this.props.user.currency}</Text>
                         </Block>
                     </Block>
 
@@ -158,7 +165,16 @@ Settings.defaultProps = {
     profile: mocks.profile
 };
 
-export default Settings;
+const mapStateToProps = (state) => ( {
+    user: state.user.user,
+    plants: state.plants.plants1,
+    terrariums: state.terrarium.terrarium1,
+  })
+  
+  const mapDispatchToProps = ({
+
+  })
+  export default connect(mapStateToProps, mapDispatchToProps)(Settings);
 
 const styles = StyleSheet.create({
     header: {
