@@ -10,10 +10,18 @@ const instance = axios.create({
 
 export const getUserData = async (username) => {
   try {
-    const user = await instance.get('http://reactnative-server-2020.herokuapp.com/api/v1/user', {
-      "name": username
-    });
-    return user.data;
+    const requestOptions = {
+      body: JSON.stringify({"name": username}),
+      mode: 'cors',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+      }
+    }
+    const server = 'http://reactnative-server-2020.herokuapp.com/api/v1/user';
+    const user = await fetch(server, requestOptions);
+    let json = await user.json();
+    return json;
   } catch (err) {
     console.error(err);
   }
