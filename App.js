@@ -1,14 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-// import { AppLoading } from 'expo'; not working anymore
-import { Block } from './components';
+import {StyleSheet} from 'react-native';
+import {Block} from './components';
 import AppLoading from 'expo-app-loading';
-import { Asset } from 'expo-asset';
+import {Asset} from 'expo-asset';
 import Navigation from './navigation/index';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import store from './store/index.js';
-// context api: wrap everything in a provider
-// import all used images
+
 const images = [
   require('./assets/icons/back.png'),
   require('./assets/icons/plants.png'),
@@ -32,30 +30,14 @@ const images = [
   require('./assets/images/avatar.png'),
 ];
 
-handleResourcesAsync = async () => {
-  // we're caching all the images
-  // for better performance on the app
-
-  const cacheImages = images.map(image => {
-    return Asset.fromModule(image).downloadAsync();
-  });
-
-  return Promise.all(cacheImages);
-}
-
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   }
-
   handleResourcesAsync = async () => {
-    // we're caching all the images
-    // for better performance on the app
-
     const cacheImages = images.map(image => {
       return Asset.fromModule(image).downloadAsync();
     });
-
     return Promise.all(cacheImages);
   }
 
@@ -65,23 +47,17 @@ export default class App extends React.Component {
         <AppLoading
           startAsync={this.handleResourcesAsync}
           onError={error => console.warn(error)}
-          onFinish={() => this.setState({ isLoadingComplete: true })}
+          onFinish={() => this.setState({isLoadingComplete: true})}
         />
       )
     }
 
     return (
       <Provider store={store()}>
-      <Block white>
-      <Navigation />
-    </Block>
+        <Block white>
+        <Navigation />
+        </Block>
       </Provider>
     );
   }
 }
-
-
-
-const styles = StyleSheet.create({
-
-});
