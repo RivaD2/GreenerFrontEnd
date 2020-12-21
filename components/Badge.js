@@ -1,13 +1,11 @@
-import React, { Component } from "react";
-import { StyleSheet } from "react-native";
-
+import React, {Component} from "react";
+import {StyleSheet} from "react-native";
 import Block from "./Block";
-import { theme } from "../constants";
+import {theme} from "../constants";
 
 export default class Badge extends Component {
   render() {
-    const { children, style, size, color, ...props } = this.props;
-
+    const {children, style, size, color, ...props} = this.props;
     const badgeStyles = StyleSheet.flatten([
       styles.badge,
       size && {
@@ -17,7 +15,6 @@ export default class Badge extends Component {
       },
       style
     ]);
-
     return (
       <Block
         flex={false}

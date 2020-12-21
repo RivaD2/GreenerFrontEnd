@@ -1,7 +1,5 @@
-// just copy this code from the driving repo :)
-import React, { Component } from "react";
-import { Text, StyleSheet } from "react-native";
-
+import React, {Component} from "react";
+import {Text, StyleSheet} from "react-native";
 import { theme } from "../constants";
 
 export default class Typography extends Component {
@@ -17,7 +15,6 @@ export default class Typography extends Component {
       size,
       transform,
       align,
-      // styling
       regular,
       bold,
       semibold,
@@ -26,9 +23,8 @@ export default class Typography extends Component {
       light,
       center,
       right,
-      spacing, // letter-spacing
-      height, // line-height
-      // colors
+      spacing,
+      height,
       color,
       accent,
       primary,
@@ -52,12 +48,12 @@ export default class Typography extends Component {
       body && styles.body,
       caption && styles.caption,
       small && styles.small,
-      size && { fontSize: size },
-      transform && { textTransform: transform },
-      align && { textAlign: align },
-      height && { lineHeight: height },
-      spacing && { letterSpacing: spacing },
-      weight && { fontWeight: weight },
+      size && {fontSize: size},
+      transform && {textTransform: transform},
+      align && {textAlign: align},
+      height && {lineHeight: height},
+      spacing && {letterSpacing: spacing},
+      weight && {fontWeight: weight},
       regular && styles.regular,
       bold && styles.bold,
       semibold && styles.semibold,
@@ -66,8 +62,7 @@ export default class Typography extends Component {
       center && styles.center,
       right && styles.right,
       color && styles[color],
-      color && !styles[color] && { color },
-      // color shortcuts
+      color && !styles[color] && {color},
       accent && styles.accent,
       primary && styles.primary,
       secondary && styles.secondary,
@@ -76,9 +71,8 @@ export default class Typography extends Component {
       white && styles.white,
       gray && styles.gray,
       gray2 && styles.gray2,
-      style // rewrite predefined styles
+      style 
     ];
-
     return (
       <Text style={textStyles} {...props}>
         {children}
@@ -88,12 +82,10 @@ export default class Typography extends Component {
 }
 
 const styles = StyleSheet.create({
-  // default style
   text: {
     fontSize: theme.sizes.font,
     color: theme.colors.black
   },
-  // variations
   regular: {
     fontWeight: "normal",
   },
@@ -109,19 +101,16 @@ const styles = StyleSheet.create({
   light: {
     fontWeight: "200",
   },
-  // position
-  center: { textAlign: "center" },
-  right: { textAlign: "right" },
-  // colors
-  accent: { color: theme.colors.accent },
-  primary: { color: theme.colors.primary },
-  secondary: { color: theme.colors.secondary },
-  tertiary: { color: theme.colors.tertiary },
-  black: { color: theme.colors.black },
-  white: { color: theme.colors.white },
-  gray: { color: theme.colors.gray },
-  gray2: { color: theme.colors.gray2 },
-  // fonts
+  center: {textAlign: "center"},
+  right: {textAlign: "right"},
+  accent: {color: theme.colors.accent},
+  primary: {color: theme.colors.primary},
+  secondary: {color: theme.colors.secondary},
+  tertiary: {color: theme.colors.tertiary},
+  black: {color: theme.colors.black},
+  white: {color: theme.colors.white},
+  gray: {color: theme.colors.gray},
+  gray2: {color: theme.colors.gray2},
   h1: theme.fonts.h1,
   h2: theme.fonts.h2,
   h3: theme.fonts.h3,
