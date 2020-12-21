@@ -10,8 +10,10 @@ const initialState = {
   errors: {},
   isAuthorized: false,
 };
+import { connect } from 'react-redux';
+import { updateUser } from './store/user.js';
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
   state = initialState;
   signInWithGoogle = async () => {
       try {
@@ -20,8 +22,9 @@ export default class LoginScreen extends Component {
               success: ['profile', 'email']
           })
           if(result.type === 'success') {
-              await signInOauthUser(result.idToken)
-              this.props.navigation.navigate('Collection')
+                let user = await signInOauthUser(result.idToken);
+                  this.props.updateUser(user);
+                  this.props.navigation.navigate('Collection')
               return result.idToken;
           } else {
               return {cancelled: true};
@@ -39,3 +42,12 @@ export default class LoginScreen extends Component {
       )
   }
 }
+
+const mapStateToProps = (state) => ( {
+    user: state.user.user,
+  })
+  
+  const mapDispatchToProps = ({
+    updateUser
+  })
+  export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
