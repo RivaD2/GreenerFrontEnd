@@ -10,10 +10,84 @@ const instance = axios.create({
 
 export const getUserData = async (username) => {
   try {
-    const user = await instance.get('http://localhost:3000/api/v1/user', {
+    const user = await instance.get('http://reactnative-server-2020.herokuapp.com/api/v1/user', {
       "name": username
     });
     return user.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getPlant = async () => {
+  try {
+    const plant = await axios.get('http://reactnative-server-2020.herokuapp.com/api/v1/plants')
+    return await plant.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getUserPlants = async (userId) => {
+  try {
+    const plant = await axios.get(`http://reactnative-server-2020.herokuapp.com/api/v1/user-plants/${userId}/all`)
+    return await plant.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getUserTerrariums = async (userId) => {
+  try {
+    const plant = await axios.get(`http://reactnative-server-2020.herokuapp.com/api/v1/user-terrariums/${userId}/all`)
+    return await plant.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const addPlantToUser = async (user, plant) => {
+  try {
+    const requestOptions = {
+      body: JSON.stringify({"userID": user, "plantID": plant}),
+      mode: 'cors',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+      }
+    }
+    const server = 'http://reactnative-server-2020.herokuapp.com/api/v1/user-plants';
+    const userPlant = await fetch(server, requestOptions);
+    let json = await userPlant.json();
+    return json;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getTerrarium = async () => {
+  try {
+    const terrarium = await axios.get('http://reactnative-server-2020.herokuapp.com/api/v1/terrariums')
+    return await terrarium.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const addTerrariumToUser = async (user, terrarium) => {
+  try {
+    const requestOptions = {
+      body: JSON.stringify({"userID": user, "terraID": terrarium}),
+      mode: 'cors',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'
+      }
+    }
+    const server = 'http://reactnative-server-2020.herokuapp.com/api/v1/user-terrariums';
+    const userPlant = await fetch(server, requestOptions);
+    let json = await userPlant.json();
+    return json;
   } catch (err) {
     console.error(err);
   }

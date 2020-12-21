@@ -62,7 +62,7 @@ constructor(props){
             </If>
             {/* If lucky terrarium */}
             <If condition={category.name === 'Lucky Terrarium'}>
-              <Terrarium name={category.name} plants={plants2} {...{profile, user, styles}}/>
+              <Terrarium updateUser ={this.props.updateUser} user={this.props.user} navigation={this.props.navigation} name={category.name} plants={plants2} {...{profile, user, styles}}/>
             </If>
 
             {/* Store */}

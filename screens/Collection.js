@@ -11,6 +11,11 @@ import { Card, Badge, Button, Block, Text } from "../components";
 import { theme, mocks } from "../constants";
 import { connect } from 'react-redux';
 const { width } = Dimensions.get("window");
+import { setPlants } from '../store/plants.js';
+import { setTerrarium } from '../store/terrarium.js';
+
+import { getUserPlants } from '../Axios.js';
+import { getUserTerrariums } from '../Axios.js';
 
 class Browse extends Component {
   state = {
@@ -20,6 +25,18 @@ class Browse extends Component {
 
   componentDidMount() {
     this.setState({ categories: this.props.categories });
+    getUserPlants(this.props.user._id).then(results => {
+      console.log('user plants', results)
+      this.props.setPlants(results);
+    })
+    getUserTerrariums(this.props.user._id).then(userTerra => {
+      let savedTerra = [];
+      for(let i = 0; i < userTerra.length; i++){
+        savedTerra.push({...userTerra, tags: ['terrarium', 'everything'], image: require('../assets/images/terrarium_1.png')}); 
+      }
+      this.props.setTerrarium(savedTerra);
+    })
+
   }
 
   handleTab = tab => {
@@ -51,8 +68,7 @@ class Browse extends Component {
   render() {
     const { profile, navigation } = this.props;
     const { categories } = this.state;
-    const tabs = ['Everything', 'Terrarium', 'Minigames', 'Shop'];
-
+    const tabs = ['Everything'];
 
     return (
       <Block>
@@ -103,12 +119,17 @@ class Browse extends Component {
   }
 }
 const mapStateToProps = (state) => ( {
-  user: state.user,
+  user: state.user.user,
+  plants: state.plants.plants1,
+  terrariums: state.terrarium.terrarium1,
 })
 
 const mapDispatchToProps = ({
+  setPlants,
+  setTerrarium
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Browse);
+
 Browse.defaultProps = {
   profile: mocks.profile,
   categories: mocks.categories

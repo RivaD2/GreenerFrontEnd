@@ -11,6 +11,7 @@ import { Button, Block, Input, Text } from "../components";
 import { theme } from "../constants";
 import { connect } from 'react-redux';
 import { updateUser } from '../store/user.js';
+import { getPlant, addPlantToUser, getTerrarium, addTerrariumToUser } from '../Axios.js';
 class SignUp extends Component {
   state = {
     email: null,
@@ -56,9 +57,18 @@ class SignUp extends Component {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log('Sent Json', json);
-          delete json.password;
+          delete json.results.password;
           this.props.updateUser(json.results);
+          getPlant().then(results => {
+            addPlantToUser(this.props.user._id, results._id).then(result => {
+
+            })
+          })
+          getTerrarium().then(terra => {
+            addTerrariumToUser(this.props.user._id, terra._id).then(userTerra => {
+              console.log('user terra', userTerra);
+            })
+          })
         })
         if(this.state.username === this.props.user.name){
           Alert.alert(
@@ -89,8 +99,6 @@ class SignUp extends Component {
         <Block padding={[0, theme.sizes.base * 2]}>
           <Text h1 bold>
             Sign Up
-          </Text>
-          <Text>
           </Text>
           <Block middle>
             <Input
