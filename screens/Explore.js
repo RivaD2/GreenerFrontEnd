@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
   Dimensions,
   Image,
@@ -8,8 +8,9 @@ import {
 } from "react-native";
 import Game from "../components/Game";
 import Terrarium from '../components/Terriarum';
-import { Card, Badge, Button, Block, Text, Divider } from "../components";
-import { theme, mocks } from "../constants";
+import {Card, Badge, Button, Block, Text, Divider} from "../components";
+import {theme, mocks} from "../constants";
+
 const BasicSvg = () =>{
   <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
     <circle
@@ -20,56 +21,47 @@ const BasicSvg = () =>{
       fill="lightblue"
     />
   </svg>}
-
-const { width } = Dimensions.get("window");
-import { connect } from 'react-redux';
-import { updateUser } from '../store/user.js';
+const {width} = Dimensions.get("window");
+import {connect} from 'react-redux';
+import {updateUser} from '../store/user.js';
 
 class Explore extends React.Component {
-constructor(props){
-    super(props);
-    this.props = props;
-}
+  constructor(props){
+      super(props);
+      this.props = props;
+  }
     state = {
         plants1: [],
         plants2: [],
         shopPlants: [],
       };
-
       componentDidMount() {
-        this.setState({ plants1: this.props.plants1 });
-        this.setState({ plants2: this.props.plants2});
-        this.setState({ shopPlants: this.props.shopPlants});
+        this.setState({plants1: this.props.plants1});
+        this.setState({plants2: this.props.plants2});
+        this.setState({shopPlants: this.props.shopPlants});
       }
-
     render(){
         const {profile, user, navigation} = this.props;
-        const { plants } = this.props;
-        const { plants2 } = this.state;
-        const { shopPlants } = this.state;
+        const {plants} = this.props;
+        const {plants2} = this.state;
+        const {shopPlants} = this.state;
         const category = navigation.getParam('category');
         const categories = navigation.getParam('categories');
         const plant = navigation.getParam('plant') || 'plant';
         const If = (props) => {
             return props.condition ? props.children : null;
           }
-
         return (
             <>
             <If condition={category.name === 'Happy Terrarium'}>
-                {/* Terrarium component is dropped in here to reduce Explorer
-                file complexity */}
                 <Text>
-                    {/* {JSON.stringify(this.props)} */}
                 </Text>
                 <Terrarium navigation={this.props.navigation} name={category.name} {...{profile, user, styles}} />
             </If>
-            {/* If lucky terrarium */}
+
             <If condition={category.name === 'Lucky Terrarium'}>
               <Terrarium navigation={this.props.navigation} category={category} plants={plants2} {...{profile, user, styles}}/>
             </If>
-
-            {/* Store */}
 
             <If condition={category.name === 'Shop'}>
             <Block>
@@ -78,80 +70,70 @@ constructor(props){
                     {category.name}
                     </Text>
                     <Button onPress={() => navigation.navigate("Settings")}>
-                        <Image source={profile.avatar} style={styles.avatar} />
+                        <Image source={profile.avatar} style={styles.avatar}/>
                     </Button>
                 </Block>
                 <ScrollView
-                showsVerticalScrollIndicator={false}
-                style={{ paddingVertical: theme.sizes.base * 2 }}
-                >
+                  showsVerticalScrollIndicator={false}
+                  style={{ paddingVertical: theme.sizes.base * 2 }}
+                  >
                 <Block center middle>
                     <Text>{plant.name}</Text>
-                    <Image source={plant.image} />
+                    <Image source={plant.image}/>
                     <Text>{plant.price}</Text>   
                 </Block>
-                <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
+                <Divider margin={[theme.sizes.base, theme.sizes.base * 2]}/>
                     <Block flex={false} row space="between" style={styles.categories}>
-                    {shopPlants.map(plant=> (
-                        <TouchableOpacity
-                        key={plant.name}
-                        onPress={() => navigation.navigate("Explore", { plant })}
-                        >
-                            <Card center middle shadow style={styles.category}>
-                            <Badge
-                            margin={[0, 0, 15]}
-                            size={50}
-                            color="rgba(41,216,143,0.20)"
-                            >
-                            <Image source={plant.image} />
-                            </Badge>
-                            <Text medium height={20}>
-                            {plant.name}
-                            </Text>
-                            <Text gray caption>
-                            {plant.description} 
-                            </Text>
-                            </Card>
-                        </TouchableOpacity>
+                      {shopPlants.map(plant=> (
+                          <TouchableOpacity
+                          key={plant.name}
+                          onPress={() => navigation.navigate("Explore", {plant})}
+                          >
+                              <Card center middle shadow style={styles.category}>
+                              <Badge
+                                margin={[0, 0, 15]}
+                                size={50}
+                                color="rgba(41,216,143,0.20)"
+                              >
+                              <Image source={plant.image} />
+                              </Badge>
+                              <Text medium height={20}>
+                                {plant.name}
+                              </Text>
+                              <Text gray caption>
+                                {plant.description} 
+                              </Text>
+                              </Card>
+                          </TouchableOpacity>
                         ))}
                     </Block>
                 </ScrollView>
-
             </Block>
             </If>
-
-            {/* tic tack toe */}
-
             <If condition={category.name === 'Tic Tac Toe'}>
             <Block center>
-                        <Game />
+              <Game/>
             </Block>
             </If>
-
-
             </>
         );
     }
-  
 }
-
 const mapStateToProps = (state) => ( {
     user: state.user,
     plants: state.plants.plants1,
   })
   
-  const mapDispatchToProps = ({
+const mapDispatchToProps = ({
     updateUser
   })
-  export default connect(mapStateToProps, mapDispatchToProps)(Explore);
-
+export default connect(mapStateToProps, mapDispatchToProps)(Explore);
 Explore.defaultProps = {
     profile: mocks.profile,
     plants1: mocks.plants1,
     plants2: mocks.plants2,
     shopPlants: mocks.shopPlants
   };
-
 const styles = StyleSheet.create({
     header: {
       paddingHorizontal: theme.sizes.base * 2
@@ -172,7 +154,6 @@ const styles = StyleSheet.create({
         marginBottom: theme.sizes.base * 3.5
       },
     category: {
-        // this should be dynamic based on screen width
         minWidth: (width - theme.sizes.padding * 2.4 - theme.sizes.base) / 2,
         maxWidth: (width - theme.sizes.padding * 2.4 - theme.sizes.base) / 2,
         maxHeight: (width - theme.sizes.padding * 2.4 - theme.sizes.base) / 2

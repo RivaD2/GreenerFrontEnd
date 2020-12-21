@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, SafeAreaView, Text, TouchableHighlight, View } from 'react-native'
+import {Button, SafeAreaView, Text, TouchableHighlight, View} from 'react-native'
 
 const newGameState = {
   squares: Array(9).fill(null),
@@ -11,15 +11,12 @@ export default class Game extends React.Component {
     super(props)
     this.state = newGameState
   }
-
   whoseTurn() {
-    return this.state.xIsNext ? 'X' : 'O'
+    return this.state.xIsNext ? 'X' : 'O';
   }
-
   onNewGame() {
-    this.setState(newGameState)
+    this.setState(newGameState);
   }
-
   onMove(i) {
     let newSquares = this.state.squares.slice()
     const turn = this.whoseTurn()
@@ -30,32 +27,27 @@ export default class Game extends React.Component {
       xIsNext: !this.state.xIsNext,
     })
   }
-
   render() {
     const style = {
       backgroundColor: 'transparent',
       flex: 1,
       alignItems: 'center',
     }
-
     return (
       <SafeAreaView style={style}>
-        
-        <Board squares={this.state.squares} onMove={(i) => this.onMove(i)} />
-        <Status turn={this.whoseTurn()} winner={winner(this.state.squares)} onNewGame={() => this.onNewGame()} />
+        <Board squares={this.state.squares} onMove={(i) => this.onMove(i)}/>
+        <Status turn={this.whoseTurn()} winner={winner(this.state.squares)} onNewGame={() => this.onNewGame()}/>
       </SafeAreaView>
     )
   }
-
-  
 }
 
 const Board = ({squares, onMove}) => {
   return (
     <View style={{flex: 1, justifyContent: 'center'}}>
-      <Row squares={squares} startIndex={0} onMove={onMove} />
-      <Row squares={squares} startIndex={3} onMove={onMove} />
-      <Row squares={squares} startIndex={6} onMove={onMove} />
+      <Row squares={squares} startIndex={0} onMove={onMove}/>
+      <Row squares={squares} startIndex={3} onMove={onMove}/>
+      <Row squares={squares} startIndex={6} onMove={onMove}/>
     </View>
   )
 }
@@ -63,9 +55,9 @@ const Board = ({squares, onMove}) => {
 const Row = ({squares, startIndex, onMove}) => {
   return (
     <View style={{flexDirection: 'row'}}>
-      <Square label={squares[startIndex    ]} onPress={() => onMove(startIndex    )} />
-      <Square label={squares[startIndex + 1]} onPress={() => onMove(startIndex + 1)} />
-      <Square label={squares[startIndex + 2]} onPress={() => onMove(startIndex + 2)} />
+      <Square label={squares[startIndex]} onPress={() => onMove(startIndex)}/>
+      <Square label={squares[startIndex + 1]} onPress={() => onMove(startIndex + 1)}/>
+      <Square label={squares[startIndex + 2]} onPress={() => onMove(startIndex + 2)}/>
     </View>
   )
 }
@@ -84,7 +76,6 @@ const Square = ({label, onPress}) => {
     fontSize: 36,
     fontWeight: 'bold',
   }
-
   return (
     <TouchableHighlight style={style} onPress={onPress}>
       <Text style={textStyle}>{label}</Text>
@@ -96,11 +87,10 @@ const Status = ({turn, winner, onNewGame}) => {
   const text = winner === null ? 'Tie game :-/'
         : winner !== undefined ? winner + ' wins! You get $xx plant cash!'
         : turn + "'s turn"
-
   return (
     <View style={{flex: 1}}>
       <Text style={{fontSize: 36, textAlign: 'center'}}>{text}</Text>
-      <Button title='Start new game' onPress={onNewGame} />
+      <Button title='Start new game' onPress={onNewGame}/>
     </View>
   )
 }
@@ -116,13 +106,12 @@ const winner = squares => {
     [0, 4, 8],
     [2, 4, 6],
   ]
-
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i]
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a]
+      return squares[a];
     }
   }
-  if (squares.indexOf(null) === -1) return null // tie game
-  return undefined
+  if (squares.indexOf(null) === -1) return null;
+  return undefined;
 }

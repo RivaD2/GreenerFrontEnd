@@ -1,14 +1,13 @@
 import axios from "axios";
-import base64 from 'base-64';
 
 const instance = axios.create({
   baseURL: '',
   mode: 'cors',
   cache: 'no-cache',
-  headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
+  headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}
 });
 
-export const getUserData = async (username) => {
+export const getUserData = async username => {
   try {
     const requestOptions = {
       body: JSON.stringify({"name": username}),
@@ -36,7 +35,7 @@ export const getPlant = async () => {
   }
 };
 
-export const getUserPlants = async (userId) => {
+export const getUserPlants = async userId => {
   try {
     const plant = await axios.get(`http://reactnative-server-2020.herokuapp.com/api/v1/user-plants/${userId}/all`)
     return await plant.data;
@@ -45,7 +44,7 @@ export const getUserPlants = async (userId) => {
   }
 };
 
-export const getUserTerrariums = async (userId) => {
+export const getUserTerrariums = async userId => {
   try {
     const plant = await axios.get(`http://reactnative-server-2020.herokuapp.com/api/v1/user-terrariums/${userId}/all`)
     return await plant.data;
@@ -101,7 +100,7 @@ export const addTerrariumToUser = async (user, terrarium) => {
   }
 };
 
-export const signUserUp = async (userObj) => {
+export const signUserUp = async userObj => {
   try {
     let user = await fetch('https://reactnative-server-2020.herokuapp.com/api/v1/user/signUp', {
       method: 'POST',
@@ -118,7 +117,7 @@ export const signUserUp = async (userObj) => {
   }
 };
 
-export const signUserIn = async (userObj) => {
+export const signUserIn = async userObj => {
   try {
     const requestOptions = {
       mode: 'cors',
@@ -137,8 +136,7 @@ export const signUserIn = async (userObj) => {
   }
 };
 
-
-export const signInOauthUser = async (accessToken) => {
+export const signInOauthUser = async accessToken => {
   try {
     const requestOptions = {
       mode: 'cors',
@@ -159,6 +157,7 @@ export const signInOauthUser = async (accessToken) => {
     console.error(err);
   }
 };
+
 export const updateUserDB = async (userId,userObj) => {
   try {
     const requestOptions = {

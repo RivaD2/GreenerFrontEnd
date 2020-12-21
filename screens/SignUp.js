@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
   Alert,
   ActivityIndicator,
@@ -6,12 +6,12 @@ import {
   KeyboardAvoidingView,
   StyleSheet
 } from "react-native";
+import {Button, Block, Input, Text} from "../components";
+import {theme} from "../constants";
+import {connect} from 'react-redux';
+import {updateUser} from '../store/user.js';
+import {getPlant, addPlantToUser, getTerrarium, addTerrariumToUser} from '../Axios.js';
 
-import { Button, Block, Input, Text } from "../components";
-import { theme } from "../constants";
-import { connect } from 'react-redux';
-import { updateUser } from '../store/user.js';
-import { getPlant, addPlantToUser, getTerrarium, addTerrariumToUser } from '../Axios.js';
 class SignUp extends Component {
   state = {
     email: null,
@@ -20,40 +20,30 @@ class SignUp extends Component {
     errors: [],
     loading: false
   };
-
   handleSignUp() {
-    const { navigation } = this.props;
-    const { username, password } = this.state;
+    const {navigation} = this.props;
+    const {username, password} = this.state;
     const errors = [];
-
     Keyboard.dismiss();
-    this.setState({ loading: true });
 
-    // check with backend API or with some static data
+    this.setState({ loading: true });
     if (!username) errors.push("username");
     if (!password) errors.push("password");
 
-    this.setState({ errors, loading: false });
-
+    this.setState({errors, loading: false});
     if (!errors.length) {
-      /// Pushing new USER to API
-      
-
       fetch('https://reactnative-server-2020.herokuapp.com/api/v1/user/signUp', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          
+          body: JSON.stringify({ 
           name: username,
           password: password,
           role: "user",
           currency: 0
-
         }),
-        
       })
         .then((response) => response.json())
         .then((json) => {
@@ -61,7 +51,6 @@ class SignUp extends Component {
           this.props.updateUser(json.results);
           getPlant().then(results => {
             addPlantToUser(this.props.user._id, results._id).then(result => {
-
             })
           })
           getTerrarium().then(terra => {
@@ -90,8 +79,8 @@ class SignUp extends Component {
   }
 
   render() {
-    const { navigation } = this.props;
-    const { loading, errors } = this.state;
+    const {navigation} = this.props;
+    const {loading, errors} = this.state;
     const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
 
     return (
@@ -106,7 +95,7 @@ class SignUp extends Component {
               error={hasErrors("username")}
               style={[styles.input, hasErrors("username")]}
               defaultValue={this.state.username}
-              onChangeText={text => this.setState({ username: text })}
+              onChangeText={text => this.setState({username: text})}
             />
             <Input
               secure
@@ -114,7 +103,7 @@ class SignUp extends Component {
               error={hasErrors("password")}
               style={[styles.input, hasErrors("password")]}
               defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
+              onChangeText={text => this.setState({password: text})}
             />
             <Button gradient onPress={() => this.handleSignUp()}>
               {loading ? (
@@ -125,13 +114,12 @@ class SignUp extends Component {
                 </Text>
               )}
             </Button>
-
             <Button onPress={() => navigation.navigate("Login")}>
               <Text
                 gray
                 caption
                 center
-                style={{ textDecorationLine: "underline" }}
+                style={{textDecorationLine: "underline"}}
               >
                 Back to Login
               </Text>
@@ -142,7 +130,7 @@ class SignUp extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ( {
+const mapStateToProps = (state) => ({
   user: state.user.user,
 })
 

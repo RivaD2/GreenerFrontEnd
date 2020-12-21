@@ -1,14 +1,12 @@
-import React, { Component } from "react";
-import { StyleSheet } from "react-native";
-
+import React, {Component} from "react";
+import {StyleSheet} from "react-native";
 import Block from "./Block";
-import { theme } from "../constants";
+import {theme} from "../constants";
 
 export default class Card extends Component {
   render() {
-    const { color, style, children, ...props } = this.props;
+    const {color, style, children, ...props} = this.props;
     const cardStyles = [styles.card, style];
-
     return (
       <Block color={color || theme.colors.white} style={cardStyles} {...props}>
         {children}

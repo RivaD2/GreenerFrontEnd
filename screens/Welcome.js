@@ -1,29 +1,14 @@
 import React from 'react';
-import { Button, Block, Text } from '../components';
-import { theme } from '../constants'
-import { StyleSheet, FlatList, Image, Dimensions, Animated, Modal, ScrollView } from 'react-native';
-
-const { width, height } = Dimensions.get('window');
-
+import {Button, Block, Text} from '../components';
+import {theme} from '../constants'
+import {StyleSheet, Dimensions, Animated} from 'react-native';
 
 export default class Welcome extends React.Component {
-
-  static navigationOptions = {
-  }
-
-
+  //left scrollX, just in case
   scrollX = new Animated.Value(0);
-
   state = {
     showInstructions: false,
   }
-
-
-
-
-
-
-
 
   render() {
     return (
@@ -33,7 +18,7 @@ export default class Welcome extends React.Component {
             Your fun app:
             <Text h1 primary> Greener.</Text>
           </Text>
-          <Text h3 gray2 style={{ marginTop: theme.sizes.padding / 2 }}>
+          <Text h3 gray2 style={{marginTop: theme.sizes.padding / 2}}>
             Enjoy the experience.
           </Text>
         </Block>
@@ -45,35 +30,18 @@ export default class Welcome extends React.Component {
             <Text center semibold>Signup</Text>
           </Button>
         </Block>
-
       </Block>
-
     );
   }
-
-
-
 }
-
-/*
-
-Rendering these images pulled from assets folder
-
-*/
 
 Welcome.defaultProps = {
   illustrations: [
-    { id: 1, source: require('../assets/images/illustration_1.png') },
-    { id: 2, source: require('../assets/images/illustration_2.png') },
-    { id: 3, source: require('../assets/images/illustration_3.png') },
+    {id: 1, source: require('../assets/images/illustration_1.png')},
+    {id: 2, source: require('../assets/images/illustration_2.png')},
+    {id: 3, source: require('../assets/images/illustration_3.png')},
   ],
 };
-
-/*
-
-Styles for the page
-
-*/
 
 const styles = StyleSheet.create({
   container: {
