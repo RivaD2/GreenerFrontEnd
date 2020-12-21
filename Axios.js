@@ -40,8 +40,10 @@ export const signUserIn = async (userObj) => {
       }
     }
     const server = 'https://reactnative-server-2020.herokuapp.com/api/v1/user/signIn'
+    console.log("Making server request to " + server + " with body:", requestOptions)
     const response = await fetch(server, requestOptions)
     const json = await response.json()
+    console.log("User logged in via login:", json)
     return json
   }
   catch (err) {
@@ -49,6 +51,27 @@ export const signUserIn = async (userObj) => {
   }
 };
 
+export const signInOauthUser = async (accessToken) => {
+  try {
+    const requestOptions = {
+      mode: 'cors',
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        token: accessToken
+      })
+    }
+    const server = 'https://reactnative-server-2020.herokuapp.com/api/v1/user/authenticate';
+    const response = await fetch(server, requestOptions);
+    const json = await response.json();
+    return json;
+  }
+  catch (err) {
+    console.error(err);
+  }
+};
 export const updateUser = async (userId,userObj) => {
   try {
     const requestOptions = {
@@ -60,11 +83,15 @@ export const updateUser = async (userId,userObj) => {
       body: JSON.stringify(userObj)
     }
     const server = `https://reactnative-server-2020.herokuapp.com/api/v1/user/${userId}`;
+    console.log("Making server request to " + server, requestOptions)
     const response = await fetch(server, requestOptions);
+    console.log("Response: ", response)
     const json = await response.json();
+    console.log("JSON:", json);
     return json;
   }
   catch (err) {
+    console.log("ERROR!")
     console.error(err);
   }
 };
