@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
   ActivityIndicator,
   Keyboard,
@@ -7,19 +7,15 @@ import {
   StyleSheet,
   Alert
 } from "react-native";
-
-import { Button, Block, Input, Text } from "../components";
-import { theme } from "../constants";
+import {Button, Block, Input, Text} from "../components";
+import {theme} from "../constants";
 import OAuth from '../OauthLogin.js';
 import base64 from 'base-64';
-import { signUserIn } from '../Axios.js';
-// const VALID_USERNAME = "";
-// const VALID_PASSWORD = "";
+import {signUserIn} from '../Axios.js';
+import {connect} from 'react-redux';
+import {updateUser} from '../store/user.js';
+
 let currency = 5;
-
-import { connect } from 'react-redux';
-import { updateUser } from '../store/user.js';
-
 class Login extends Component {
   constructor(props){
     super(props);
@@ -32,23 +28,13 @@ class Login extends Component {
     errors: [],
     loading: false,
   };
-
   async handleLogin(){
-    const { navigation } = this.props;
-    const { username, password } = this.state;
+    const {navigation} = this.props;
+    const {username, password} = this.state;
     const errors = [];
-
     Keyboard.dismiss();
+
     this.setState({ ...this.state, loading: true });
-
-    // check with backend API or with some static data
-    // if (username !== VALID_USERNAME) {
-    //   errors.push("username");
-    // }
-    // if (password !== VALID_PASSWORD) {
-    //   errors.push("password");
-    // }
-
     this.setState({ ...this.state, loading: false });
     let encodedString = base64.encode(`${this.state.username}:${this.state.password}`)
     const user = await signUserIn(encodedString);
@@ -58,7 +44,6 @@ class Login extends Component {
       Alert.alert(
         "Success!",
         "You are logged in.",
-  
         [
           {
             text: "Continue",
@@ -67,34 +52,27 @@ class Login extends Component {
             }
           }
         ],
-        { cancelable: false }
+        {cancelable: false}
       );
     }
     else{
       Alert.alert(
         "Failed!",
         "User Credentials do not match",
-  
-        [
-          {
+        [{
             text: "Try Again",
-            onPress: () => {
-              
+            onPress: () => {   
             }
-          }
-        ],
-        { cancelable: false }
+          }],
+        {cancelable: false}
       );
     }
-        
-
   }
-
   render() {
-    const { navigation } = this.props;
-    const { loading, errors } = this.state;
+    const {navigation} = this.props;
+    const {loading, errors} = this.state;
     const hasErrors = key => (errors.includes(key) ? styles.hasErrors : null);
-
+    
     return (
       <KeyboardAvoidingView style={styles.login} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
@@ -104,7 +82,7 @@ class Login extends Component {
               error={hasErrors("username")}
               style={[styles.input, hasErrors("username")]}
               value={this.state.username}
-              onChangeText={text => this.setState({ username: text })}
+              onChangeText={text => this.setState({username: text})}
             />
             <Input
               secure
@@ -112,20 +90,19 @@ class Login extends Component {
               error={hasErrors("password")}
               style={[styles.input, hasErrors("password")]}
               value={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
+              onChangeText={text => this.setState({password: text})}
             />
             <Button gradient onPress={() => this.handleLogin()}>
               {loading ? (
-                <ActivityIndicator size="small" color="white" />
+                <ActivityIndicator size="small" color="white"/>
               ) : (
                   <Text bold white center>
                     Login
                   </Text>
                 )}
             </Button>
-
             <Button onPress={() => navigation.navigate('Forgot')}>
-              <Text gray caption center style={{ textDecorationLine: 'underline' }}>
+              <Text gray caption center style={{textDecorationLine: 'underline'}}>
                 Forgot your password?
               </Text>
             </Button>
@@ -139,10 +116,9 @@ class Login extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ( {
+const mapStateToProps = (state) => ({
   user: state.user.user,
 })
-
 const mapDispatchToProps = ({
   updateUser,
 })

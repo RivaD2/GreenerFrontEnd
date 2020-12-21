@@ -16,7 +16,6 @@ export const updateUser = (stuff) => {
     }
 }
 
-// What should be done to our initial state?
 const userReducer = (state = initialState, action) => {
     let { payload, type } = action;
     switch (type) {
@@ -27,8 +26,6 @@ const userReducer = (state = initialState, action) => {
         default:
             return state;
     }
-
-    // this returns the new state.
 }
 
 export default userReducer;

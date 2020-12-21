@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Animated } from "react-native";
-
-import { theme } from "../constants";
+import React, {Component} from "react";
+import {StyleSheet, View, Animated} from "react-native";
+import {theme} from "../constants";
 
 export default class Block extends Component {
   handleMargins() {
-    const { margin } = this.props;
+    const {margin} = this.props;
     if (typeof margin === "number") {
       return {
         marginTop: margin,
@@ -14,7 +13,6 @@ export default class Block extends Component {
         marginLeft: margin
       };
     }
-
     if (typeof margin === "object") {
       const marginSize = Object.keys(margin).length;
       switch (marginSize) {
@@ -51,7 +49,7 @@ export default class Block extends Component {
   }
 
   handlePaddings() {
-    const { padding } = this.props;
+    const {padding} = this.props;
     if (typeof padding === "number") {
       return {
         paddingTop: padding,
@@ -60,7 +58,6 @@ export default class Block extends Component {
         paddingLeft: padding
       };
     }
-
     if (typeof padding === "object") {
       const paddingSize = Object.keys(padding).length;
       switch (paddingSize) {
@@ -122,8 +119,8 @@ export default class Block extends Component {
 
     const blockStyles = [
       styles.block,
-      flex && { flex },
-      flex === false && { flex: 0 }, // reset / disable flex
+      flex && {flex},
+      flex === false && {flex: 0}, 
       row && styles.row,
       column && styles.column,
       center && styles.center,
@@ -132,17 +129,16 @@ export default class Block extends Component {
       right && styles.right,
       top && styles.top,
       bottom && styles.bottom,
-      margin && { ...this.handleMargins() },
-      padding && { ...this.handlePaddings() },
+      margin && {...this.handleMargins()},
+      padding && {...this.handlePaddings()},
       card && styles.card,
       shadow && styles.shadow,
-      space && { justifyContent: `space-${space}` },
-      wrap && { flexWrap: "wrap" },
-      color && styles[color], // predefined styles colors for backgroundColor
-      color && !styles[color] && { backgroundColor: color }, // custom backgroundColor
-      style // rewrite predefined styles
+      space && {justifyContent: `space-${space}`},
+      wrap && {flexWrap: "wrap"},
+      color && styles[color], 
+      color && !styles[color] && {backgroundColor: color}, 
+      style 
     ];
-
     if (animated) {
       return (
         <Animated.View style={blockStyles} {...props}>
@@ -150,7 +146,6 @@ export default class Block extends Component {
         </Animated.View>
       );
     }
-
     return (
       <View style={blockStyles} {...props}>
         {children}
@@ -192,17 +187,17 @@ export const styles = StyleSheet.create({
   },
   shadow: {
     shadowColor: theme.colors.black,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 13,
     elevation: 2
   },
-  accent: { backgroundColor: theme.colors.accent },
-  primary: { backgroundColor: theme.colors.primary },
-  secondary: { backgroundColor: theme.colors.secondary },
-  tertiary: { backgroundColor: theme.colors.tertiary },
-  black: { backgroundColor: theme.colors.black },
-  white: { backgroundColor: theme.colors.white },
-  gray: { backgroundColor: theme.colors.gray },
-  gray2: { backgroundColor: theme.colors.gray2 }
+  accent: {backgroundColor: theme.colors.accent},
+  primary: {backgroundColor: theme.colors.primary},
+  secondary: {backgroundColor: theme.colors.secondary},
+  tertiary: {backgroundColor: theme.colors.tertiary},
+  black: {backgroundColor: theme.colors.black},
+  white: {backgroundColor: theme.colors.white},
+  gray: {backgroundColor: theme.colors.gray},
+  gray2: {backgroundColor: theme.colors.gray2}
 });

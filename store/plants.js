@@ -16,7 +16,6 @@ export const setPlants = (stuff) => {
     }
 }
 
-// What should be done to our initial state?
 const plantsReducer = (state = initialState, action) => {
     let { payload, type } = action;
     switch (type) {
@@ -27,8 +26,6 @@ const plantsReducer = (state = initialState, action) => {
         default:
             return state;
     }
-
-    // this returns the new state.
 }
 
 export default plantsReducer;

@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-
+import React, {Component} from 'react';
+import {StyleSheet} from 'react-native';
 import Block from './Block';
-import { theme } from '../constants';
+import {theme} from '../constants';
 
 export default class Divider extends Component {
   render() {
-    const { color, style, ...props } = this.props;
+    const {color, style, ...props} = this.props;
     const dividerStyles = [
       styles.divider,
       style,
     ];
-
     return (
       <Block
         color={color || theme.colors.gray2}
