@@ -44,10 +44,11 @@ constructor(props){
 
     render(){
         const {profile, user, navigation} = this.props;
-        const { plants1 } = this.state;
+        const { plants } = this.props;
         const { plants2 } = this.state;
         const { shopPlants } = this.state;
         const category = navigation.getParam('category');
+        const categories = navigation.getParam('categories');
         const plant = navigation.getParam('plant') || 'plant';
         const If = (props) => {
             return props.condition ? props.children : null;
@@ -61,11 +62,11 @@ constructor(props){
                 <Text>
                     {/* {JSON.stringify(this.props)} */}
                 </Text>
-                <Terrarium navigation={this.props.navigation} name={category.name} plants={plants1} {...{profile, user, styles}} />
+                <Terrarium navigation={this.props.navigation} name={category.name} {...{profile, user, styles}} />
             </If>
             {/* If lucky terrarium */}
             <If condition={category.name === 'Lucky Terrarium'}>
-              <Terrarium navigation={this.props.navigation} name={category.name} plants={plants2} {...{profile, user, styles}}/>
+              <Terrarium navigation={this.props.navigation} category={category} plants={plants2} {...{profile, user, styles}}/>
             </If>
 
             {/* Store */}
@@ -136,6 +137,7 @@ constructor(props){
 
 const mapStateToProps = (state) => ( {
     user: state.user,
+    plants: state.plants.plants1,
   })
   
   const mapDispatchToProps = ({

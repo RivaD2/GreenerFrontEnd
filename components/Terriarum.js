@@ -17,7 +17,8 @@ class Terrarium extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            selectedButton: undefined
+            selectedButton: undefined,
+            category: []
         }
         this.buttons = [{
             id: 'water',
@@ -35,6 +36,11 @@ class Terrarium extends React.Component {
             tip: 'give it some sun'
         }]
     }
+
+    componentWillMount(){
+        console.log('terrarium category array',this.props.categories)
+    }
+
     onButtonPress = (button) => {
         // Make it so when button is clicked, button is set in state
         // I am setting button to state so I can dynamically render the tips
@@ -112,9 +118,6 @@ class Terrarium extends React.Component {
                             <Text medium height={20}>
                               {plant.name}
                             </Text>
-                            <Text gray caption>
-                              {plant.description} 
-                            </Text>
                             </Card>
                         </TouchableOpacity>
                         ))}
@@ -127,6 +130,7 @@ class Terrarium extends React.Component {
 
 const mapStateToProps = (state) => ( {
     user: state.user.user,
+    plants: state.plants.plants1,
   })
   
   const mapDispatchToProps = ({
