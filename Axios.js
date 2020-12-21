@@ -123,7 +123,7 @@ export const signUserIn = async (userObj) => {
   }
 };
 
-export const updateUser = async (userId,userObj) => {
+export const updateUserDB = async (userId,userObj) => {
   try {
     const requestOptions = {
       mode: 'cors',
