@@ -55,23 +55,26 @@ class SignUp extends Component {
           })
           getTerrarium().then(terra => {
             addTerrariumToUser(this.props.user._id, terra._id).then(userTerra => {
-              console.log('user terra', userTerra);
+
             })
           })
-        })
-        if(this.state.username === this.props.user.name){
-          Alert.alert(
-            "Success!",
-            "Your account has been created",
-            [{
-                text: "Continue",
-                onPress: () => {
-                  navigation.navigate("Collection");
+          if(this.state.username === this.props.user.name){
+            Alert.alert(
+              "Success!",
+              "Your account has been created",
+              [
+                {
+                  text: "Continue",
+                  onPress: () => {
+                    navigation.navigate("Collection");
+                  }
                 }
-              }],
-            {cancelable: false}
-          )
-        }
+              ],
+              { cancelable: false }
+            )
+          }
+        })
+
     }
   }
 

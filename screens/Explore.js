@@ -42,10 +42,11 @@ class Explore extends React.Component {
       }
     render(){
         const {profile, user, navigation} = this.props;
-        const {plants1} = this.state;
+        const {plants} = this.props;
         const {plants2} = this.state;
         const {shopPlants} = this.state;
         const category = navigation.getParam('category');
+        const categories = navigation.getParam('categories');
         const plant = navigation.getParam('plant') || 'plant';
         const If = (props) => {
             return props.condition ? props.children : null;
@@ -55,11 +56,11 @@ class Explore extends React.Component {
             <If condition={category.name === 'Happy Terrarium'}>
                 <Text>
                 </Text>
-                <Terrarium navigation={this.props.navigation} name={category.name} plants={plants1} {...{profile, user, styles}} />
+                <Terrarium navigation={this.props.navigation} name={category.name} {...{profile, user, styles}} />
             </If>
 
             <If condition={category.name === 'Lucky Terrarium'}>
-              <Terrarium navigation={this.props.navigation} name={category.name} plants={plants2} {...{profile, user, styles}}/>
+              <Terrarium navigation={this.props.navigation} category={category} plants={plants2} {...{profile, user, styles}}/>
             </If>
 
             <If condition={category.name === 'Shop'}>
@@ -120,6 +121,7 @@ class Explore extends React.Component {
 }
 const mapStateToProps = (state) => ( {
     user: state.user,
+    plants: state.plants.plants1,
   })
   
 const mapDispatchToProps = ({

@@ -5,7 +5,6 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { theme } from '../constants'
 import Welcome from '../screens/Welcome.js';
 import Login from '../screens/Login';
-import About from '../screens/About';
 import Collection from '../screens/Collection';
 import SignUp from '../screens/SignUp';
 import Forgot from '../screens/Forgot';
@@ -13,7 +12,6 @@ import Explore from '../screens/Explore';
 // import Browse from '../screens/Browse';
 // import Product from '../screens/Product';
 // import Settings from '../screens/Settings';
-import Profile from "../screens/Profile";
 import  {createSwitchNavigator} from 'react-navigation';
 import Settings from '../screens/Settings';
 import OAuth from '../OauthLogin';
@@ -27,9 +25,7 @@ const screens = createStackNavigator({
   Welcome,
   Login,
   OAuth,
-  About,
   Collection,
-  Profile,
   // SignUp,
   // Forgot,
   // Explore,
