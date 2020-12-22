@@ -228,7 +228,6 @@ const plants1 = [
   ];
   
   const explore = [
-    // images
     require('../assets/images/explore_1.png'),
     require('../assets/images/explore_2.png'),
     require('../assets/images/explore_3.png'),
@@ -241,7 +240,7 @@ const plants1 = [
     username: 'Gen',
     location: 'Seattle',
     email: 'test@test.com',
-    avatar: require('../assets/images/avatar.png'),
+    avatar: require('../assets/images/darius.png'),
     budget: 5000,
     funds: 5000,
     plants: 6,
