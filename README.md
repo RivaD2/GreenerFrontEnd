@@ -54,7 +54,7 @@ Version 1.0.1: Set up the repo and the docs before we begin an actual build
 
 ![Wireframe](https://github.com/401Final/onewiththeplants/blob/dev/assets/wireframe.png)
 
-#### Testing:
+#### Testing:  `jest` was used for testing the frontend and backend as well as   "@code-fellows/supergoose": "^1.0.11"
 
 #### Credits to:
 
