@@ -47,12 +47,16 @@ Version 1.0.1: Set up the repo and the docs before we begin an actual build
 
 ### ERD
 
-![ERD](https://github.com/401Final/onewiththeplants/blob/dev/assets/ERD.png)
+<!-- ![ERD]('./assets/ERD.png') -->
+
+<img src="./assets/ERD.png">
 
 
 ### Wireframe
 
-![Wireframe](https://github.com/401Final/onewiththeplants/blob/dev/assets/wireframe.png)
+<!-- ![Wireframe](https://github.com/401Final/onewiththeplants/blob/dev/assets/wireframe.png) -->
+
+<img src="./assets/wireframe.png">
 
 #### Testing:  `jest` was used for testing the frontend and backend as well as   "@code-fellows/supergoose": "^1.0.11"
 
