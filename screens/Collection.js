@@ -57,7 +57,7 @@ class Browse extends Component {
   render() {
     const { profile, navigation } = this.props;
     const { categories } = this.state;
-    const tabs = ['Everything'];
+    const tabs = ['Your Terrarium'];
     let categoryDisplay;
     if(this.state.categories.length > 0){
 

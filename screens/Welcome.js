@@ -4,7 +4,7 @@ import {theme} from '../constants'
 import {StyleSheet, Dimensions, Animated} from 'react-native';
 
 export default class Welcome extends React.Component {
-  //left scrollX, just in case
+
   scrollX = new Animated.Value(0);
   state = {
     showInstructions: false,

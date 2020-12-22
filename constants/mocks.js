@@ -240,7 +240,7 @@ const plants1 = [
     username: 'Gen',
     location: 'Seattle',
     email: 'test@test.com',
-    avatar: require(''),
+    avatar: require('../assets/images/darius.png'),
     budget: 5000,
     funds: 5000,
     plants: 6,
