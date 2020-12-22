@@ -33,7 +33,7 @@ class Browse extends Component {
       let newTerraResult = userTerra;
       newTerraResult[0].image = terrariumImage;
       newTerraResult[0].name = 'Happy Terrarium';
-      newTerraResult[0].tags = ['everything'];
+      newTerraResult[0].tags = ['Your Terrarium'];
       this.props.setTerrarium(newTerraResult);
       this.setState({...this.state, categories: newTerraResult})
     })
