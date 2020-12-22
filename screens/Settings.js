@@ -46,9 +46,6 @@ class Settings extends Component {
                     <Text h1 bold>
                         Settings
                     </Text>
-                    <Button>
-                        <Image source={profile.avatar} style={styles.avatar}/>
-                    </Button>
                 </Block>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Block style={styles.inputs}>

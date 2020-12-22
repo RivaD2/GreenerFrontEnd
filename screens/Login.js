@@ -1,4 +1,3 @@
-
 import React, {Component} from "react";
 import {
   ActivityIndicator,
@@ -101,15 +100,7 @@ class Login extends Component {
                   </Text>
                 )}
             </Button>
-            <Button onPress={() => navigation.navigate('Forgot')}>
-              <Text gray caption center style={{textDecorationLine: 'underline'}}>
-                Forgot your password?
-              </Text>
-            </Button>
             <OAuth navigation={this.props.navigation}/>
-            <Button gradient onPress={() => this.props.navigation.navigate('Collection')}>
-              <Text center semibold white>BYPASS</Text>
-            </Button>
           </Block>
         </Block>
       </KeyboardAvoidingView>
