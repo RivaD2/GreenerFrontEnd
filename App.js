@@ -5,6 +5,9 @@ import {Asset} from 'expo-asset';
 import Navigation from './navigation/index';
 import {Provider} from 'react-redux';
 import store from './store/index.js';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 const images = [
   require('./assets/icons/back.png'),
