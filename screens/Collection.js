@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-const plantImage = require('../assets/images/plant_type_one_happy.png');
+const plantImage = require('../assets/images/plant_one_big_happy.png');
 const terrariumImage = require('../assets/images/terrarium_1.png');
 import { Card, Badge, Button, Block, Text } from "../components";
 import { theme, mocks } from "../constants";
