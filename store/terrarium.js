@@ -10,6 +10,7 @@ export const selectTerrarium = (stuff) => {
 }
 
 export const setTerrarium = (stuff) => {
+    console.log('in setTerriarum', stuff);
     return {
         type: "Set",
         payload: stuff

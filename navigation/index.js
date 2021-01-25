@@ -9,12 +9,9 @@ import Collection from '../screens/Collection';
 import SignUp from '../screens/SignUp';
 import Forgot from '../screens/Forgot';
 import Explore from '../screens/Explore';
-// import Browse from '../screens/Browse';
-// import Product from '../screens/Product';
-// import Settings from '../screens/Settings';
 import  {createSwitchNavigator} from 'react-navigation';
 import Settings from '../screens/Settings';
-import OAuth from '../OauthLogin';
+import OAuth from '../components/OauthLogin';
 
 const mainNavigator  = createSwitchNavigator ({
   OAuth: { screen : OAuth },
@@ -26,28 +23,23 @@ const screens = createStackNavigator({
   Login,
   OAuth,
   Collection,
-  // SignUp,
-  // Forgot,
-  // Explore,
   SignUp,
   Forgot,
   Explore,
-  // Browse,
-  // Product,
   Settings,
 }, {
   defaultNavigationOptions: {
     headerStyle: {
       height: theme.sizes.base * 6,
-      backgroundColor: theme.colors.white, // or 'white
+      backgroundColor: theme.colors.white,
       borderBottomColor: "transparent",
-      elevation: 0, // for android only
+      elevation: 0, 
     },
-    headerBackImage: <Image source={require('../assets/icons/back.png')} />,
+    headerBackImage:() => <Image source={require('../assets/icons/back.png')} />,
     headerBackTitle: null,
     headerLeftContainerStyle: {
       alignItems: 'center',
-      marginLeft: theme.sizes.base,    //for iOS multiply the value by 2
+      marginLeft: theme.sizes.base,    
       paddingRight: theme.sizes.base,
     },
     headerRightContainerStyle: {
@@ -56,5 +48,4 @@ const screens = createStackNavigator({
     },
   }
 });
-
 export default createAppContainer(screens, mainNavigator);

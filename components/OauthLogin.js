@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import * as Google from 'expo-google-app-auth';
-import { Button, Text } from "./components";
-import {signInOauthUser} from './Axios';
+import { Button, Text } from "../components";
+import {signInOauthUser} from '../Axios'
+import { connect } from 'react-redux';
+import { updateUser } from '../store/user.js';
 
 const IOS_CLIENT_ID = '872509857984-nv75qdpnj41i8qjfeb5pplnncmnd6stv.apps.googleusercontent.com';
 const initialState = {
@@ -10,8 +12,6 @@ const initialState = {
   errors: {},
   isAuthorized: false,
 };
-import { connect } from 'react-redux';
-import { updateUser } from './store/user.js';
 
 class LoginScreen extends Component {
   state = initialState;
@@ -43,11 +43,12 @@ class LoginScreen extends Component {
   }
 }
 
-const mapStateToProps = (state) => ( {
-    user: state.user.user,
-  })
+const mapStateToProps = state => {
+  return {user: state.user.user}
+}
   
-  const mapDispatchToProps = ({
-    updateUser
-  })
-  export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+const mapDispatchToProps = ({
+  updateUser
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
