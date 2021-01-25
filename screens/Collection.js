@@ -14,9 +14,12 @@ import {connect} from 'react-redux';
 const {width} = Dimensions.get("window");
 import {setPlants} from '../store/plants.js';
 import {setTerrarium} from '../store/terrarium.js';
+import {getUserPlants, getUserTerrariums} from '../Axios.js';
 
-import {getUserPlants} from '../Axios.js';
-import {getUserTerrariums} from '../Axios.js';
+const mockUser = {
+  name:'Riva Davidowski',
+  _id: 2
+}
 
 class Browse extends Component {
   constructor(props){
@@ -28,17 +31,20 @@ class Browse extends Component {
   }
 
   componentDidMount() {
-    // this.setState({ categories: this.props.categories });
-    getUserTerrariums(this.props.user._id).then(userTerra => {
+    //this.setState({ categories: this.props.categories });
+    getUserTerrariums(mockUser._id).then(userTerra => {
       let newTerraResult = userTerra;
+      console.log('newTerraResult', userTerra);
       newTerraResult[0].image = terrariumImage;
       newTerraResult[0].name = 'Happy Terrarium';
       newTerraResult[0].tags = ['Your Terrarium'];
+      console.log('in getUserTerrariums', newTerraResult[0].tags);
       this.props.setTerrarium(newTerraResult);
       this.setState({...this.state, categories: newTerraResult})
     })
-    getUserPlants(this.props.user._id).then(results => {
+    getUserPlants(mockUser._id).then(results => {
       let newPlantResult = results;
+      console.log('in getUserPlants', results);
       newPlantResult[0].image = plantImage;
       newPlantResult[0].name = newPlantResult[0].type;
       this.props.setPlants(newPlantResult);
@@ -62,33 +68,36 @@ class Browse extends Component {
     if(this.state.categories.length > 0){
 
   categoryDisplay = categories.map(category => {
-      return <TouchableOpacity
+      return (
+      <TouchableOpacity
         key={category._id}
         onPress={() => navigation.navigate("Explore", { category, categories, navigation: this.props.navigation })}
       >
-        <Card center middle shadow style={styles.category}>
-          <Badge
-            margin={[0, 0, 15]}
-            size={50}
-            color="rgba(41,216,143,0.20)"
-          >
-            <Image source={category.image} />
-          </Badge>
-          <Text medium height={20}>
-            {category.name}
-          </Text>
-          <Text gray caption>
-            Plants: {category.length} 
-          </Text>
-        </Card>
+      <Card center middle shadow style={styles.category}>
+        <Badge
+          margin={[0, 0, 15]}
+          size={50}
+          color="rgba(41,216,143,0.20)"
+         >
+          <Image source={category.image} />
+        </Badge>
+        <Text medium height={20}>
+          {category.name}
+        </Text>
+        <Text gray caption>
+          Plants: {category.length} 
+        </Text>
+      </Card>
       </TouchableOpacity>
-  })
+      )
+    })
   }
+
     return (
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
           <Text h1 bold>
-            Welcome, {this.props.user.name}!
+            Welcome, {mockUser.name}!
           </Text>
           <Button onPress={() => navigation.navigate("Settings")}>
             <Image source={profile.avatar} style={styles.avatar} />
@@ -111,7 +120,7 @@ class Browse extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ( {
+const mapStateToProps = (state) => ({
   user: state.user.user,
   plants: state.plants.plants1,
   terrariums: state.terrarium.terrarium1,

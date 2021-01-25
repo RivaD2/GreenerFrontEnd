@@ -11,7 +11,7 @@ class Settings extends Component {
         notifications: true,
         newsletter: false,
         editing: null,
-        profile: {}
+        profile: {},
     };
 
     componentDidMount() {

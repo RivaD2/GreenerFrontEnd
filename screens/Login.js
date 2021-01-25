@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import {Button, Block, Input, Text} from "../components";
 import {theme} from "../constants";
-import OAuth from '../OauthLogin.js';
+import OAuth from '../components/OauthLogin';
 import base64 from 'base-64';
 import {signUserIn} from '../Axios.js';
 import {connect} from 'react-redux';

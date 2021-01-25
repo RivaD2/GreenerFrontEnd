@@ -74,7 +74,7 @@ export const addPlantToUser = async (user, plant) => {
 
 export const getTerrarium = async () => {
   try {
-    const terrarium = await axios.get('http://reactnative-server-2020.herokuapp.com/api/v1/terrariums')
+    const terrarium = await axios.get('http://localhost:3002');
     return await terrarium.data;
   } catch (err) {
     console.error(err);
@@ -94,6 +94,7 @@ export const addTerrariumToUser = async (user, terrarium) => {
     const server = 'http://reactnative-server-2020.herokuapp.com/api/v1/user-terrariums';
     const userPlant = await fetch(server, requestOptions);
     let json = await userPlant.json();
+    console.log('json in addTerriarumToUser', json)
     return json;
   } catch (err) {
     console.error(err);
@@ -111,7 +112,9 @@ export const signUserUp = async userObj => {
       body: JSON.stringify(userObj),
       
     })
-    return await user.json();
+    const response = await user.json();
+    console.log('in signUserUp', response);
+    return response;
   } catch (err) {
     console.error(err);
   }
