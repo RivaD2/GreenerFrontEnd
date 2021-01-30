@@ -147,6 +147,10 @@ const styles = StyleSheet.create({
       height: theme.sizes.base * 3.2,
       width: theme.sizes.base * 3.2,
       backgroundColor: 'transparent',
+      borderRadius: theme.sizes.base * 3.2
+    },
+    avatarButton: {
+      borderRadius: theme.sizes.base * 3.2
     },
     categories: {
         flexWrap: "wrap",

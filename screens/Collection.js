@@ -99,7 +99,7 @@ class Browse extends Component {
       <Block>
         <Block flex={false} row center space="between" style={styles.header}>
           <Text h1 bold>
-            Welcome, {mockUser.name}!
+            Welcome, Riva!
           </Text>
           <Button onPress={() => navigation.navigate("Settings")} style={styles.avatarButton}>
             <Image source={profile.avatar} style={styles.avatar} />
