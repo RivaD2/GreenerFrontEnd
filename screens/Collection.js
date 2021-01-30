@@ -101,7 +101,7 @@ class Browse extends Component {
           <Text h1 bold>
             Welcome, {mockUser.name}!
           </Text>
-          <Button onPress={() => navigation.navigate("Settings")}>
+          <Button onPress={() => navigation.navigate("Settings")} style={styles.avatarButton}>
             <Image source={profile.avatar} style={styles.avatar} />
           </Button>
         </Block>
@@ -148,6 +148,11 @@ const styles = StyleSheet.create({
     height: theme.sizes.base * 3.2,
     width: theme.sizes.base * 3.2,
     backgroundColor: 'transparent',
+    borderRadius: theme.sizes.base * 3.2
+
+  },
+  avatarButton: {
+    borderRadius: theme.sizes.base * 3.2
   },
   tabs: {
     borderBottomColor: theme.colors.gray2,
