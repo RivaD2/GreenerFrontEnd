@@ -35,6 +35,7 @@ class Browse extends Component {
     getUserTerrariums(mockUser._id).then(userTerra => {
       let newTerraResult = userTerra;
       console.log('newTerraResult', userTerra);
+      if(!newTerraResult) newTerraResult = [{}];
       newTerraResult[0].image = terrariumImage;
       newTerraResult[0].name = 'Happy Terrarium';
       newTerraResult[0].tags = ['Your Terrarium'];
@@ -44,6 +45,7 @@ class Browse extends Component {
     })
     getUserPlants(mockUser._id).then(results => {
       let newPlantResult = results;
+      if(!newPlantResult) newPlantResult = [{}];
       console.log('in getUserPlants', results);
       newPlantResult[0].image = plantImage;
       newPlantResult[0].name = newPlantResult[0].type;

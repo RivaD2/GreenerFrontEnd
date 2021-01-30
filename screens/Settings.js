@@ -133,7 +133,8 @@ class Settings extends Component {
 }
 
 Settings.defaultProps = {
-    profile: mocks.profile
+    profile: mocks.profile,
+    user: {}
 };
 
 const mapStateToProps = (state) => ({
