@@ -246,6 +246,7 @@ const plants1 = [
     monthly_cap: 7000,
     notifications: true,
     newsletter: false,
+    avatar: require('../assets/images/blue-headshot.png'),
   };
   
   export {
@@ -256,5 +257,5 @@ const plants1 = [
     plants1,
     plants2,
     categories2,
-    shopPlants
+    shopPlants,
   }
