@@ -1,14 +1,17 @@
-# Greener: the plant lovers app: A terrarium focused app that helps clients relax on multiple tech fronts.
+# Greener:  A terrarium focused app that helps clients relax on multiple tech fronts. 
+
+**Note**: This repo is for the Greener frontend. For the backend visit [Greener Backend](https://github.com/RivaD2/GreenerBackend)
+
 
 **Authors:**
 Darius Lee Pasilaban
 Bryant Davis, Leah Russo
 Riva Davidowski
-Robert Rizo: A front End Dev that loves the presentation layer of apps. Check out my [portfolio](https://thatvetdevrob.com)
+Robert Rizo
 
 ### Using Greener:
 
-User will need to sign in to create an account. They can then login into our React Native application manually or through Oauth. Once logged in, they will be redirected to the Collection page. Here they are given a starter Terrarium.
+User will need to sign in to create an account. They can then login into our React Native application manually or through OAuth. Once logged in, they are redirected to the Collection page. Here they are given a starter Terrarium.
 
 Once selected, they are taken to the Happy Terrarium page. It is here that they can perform actions on the plant they have selected and earn currency. Actions include: Water plant, Talk to Plant, and Sunlight.
 
