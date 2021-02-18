@@ -4,10 +4,8 @@
 
 
 **Authors:**
-Darius Lee Pasilaban
-Bryant Davis, Leah Russo
-Riva Davidowski
-Robert Rizo
+
+Darius Lee Pasilaban, Bryant Davis, Leah Russo, Riva Davidowski, Robert Rizo
 
 ### Using Greener:
 
